@@ -8,13 +8,11 @@
         </div>
         <div class="post-detail">Written by {{ loadedPost.author }}</div>
       </div>
+      <div
+        class="post-thumbnail"
+        :style="{ backgroundImage: 'url(' + loadedPost.thumbnail + ')' }"
+      ></div>
       <p class="post-content">{{ loadedPost.content }}</p>
-    </section>
-    <section class="post-feedback">
-      <p>
-        What you think about htis post man???
-        <a href="mailto:feedback@gmail.com">feedback</a>
-      </p>
     </section>
   </div>
 </template>
@@ -25,6 +23,7 @@ export default {
     return context.app.$axios
       .$get("/posts/" + context.params.id + ".json")
       .then(data => {
+        console.log("heee" + data.thumbnail);
         return {
           loadedPost: data
         };
@@ -41,19 +40,25 @@ export default {
 </script>
 
 <style scoped>
+.post-thumbnail {
+  width: 100%;
+  height: 400px;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 10px;
+}
 .single-post-page {
   padding: 30px;
   text-align: center;
   box-sizing: border-box;
 }
-
 .post {
   width: 100%;
 }
 
 @media (min-width: 768px) {
   .post {
-    width: 600px;
+    width: 800px;
     margin: auto;
   }
 }

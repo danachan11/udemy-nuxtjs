@@ -41,7 +41,7 @@ export default {
 
 <style>
 html {
-  font-family: "Open Sans", san-serif;
+  font-family: "B612", san-serif;
 }
 body {
   margin: 0;
