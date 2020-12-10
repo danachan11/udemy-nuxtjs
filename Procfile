@@ -1,1 +1,1 @@
-web: nuxt startg
+web: nuxt start
