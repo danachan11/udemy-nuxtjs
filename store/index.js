@@ -28,20 +28,31 @@ const createStore = () => {
       }
     },
     actions: {
+      setupServer(){
+        return this.$axios.$post("/setup_server/", {"id": "1234", "token": "token1234"});
+      },
+      startServer(vuexContext) {
+        return this.$axios.$post("/start_server/", {"id": "1234", "token": "token1234"});
+      },
+      //
+      //
+      //
+      //
+      //
       nuxtServerInit(vuexContext, context) {
-        return context.app.$axios
-          .$get("/posts.json")
-          .then(data => {
-            const posts = [];
-            for (const key in data) {
-              posts.push({ ...data[key], id: key });
-            }
-            vuexContext.commit("setPosts", posts);
-          })
-          .catch(e => {
-            console.log(e);
-            context.error(e);
-          });
+        // return context.app.$axios
+        //   .$get("/posts.json")
+        //   .then(data => {
+        //     const posts = [];
+        //     for (const key in data) {
+        //       posts.push({ ...data[key], id: key });
+        //     }
+        //     vuexContext.commit("setPosts", posts);
+        //   })
+        //   .catch(e => {
+        //     console.log(e);
+        //     context.error(e);
+        //   });
       },
       setPosts(vuexContext, posts) {
         vuexContext.commit("setPosts", posts);

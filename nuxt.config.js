@@ -44,7 +44,22 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: ["@nuxtjs/axios"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
+
+  proxy: {
+    "/start_server": {
+      target: "http://207.180.254.151:3005/copy",
+      pathRewrite: {
+        "^/start_server": ""
+      }
+    },
+    "/setup_server": {
+      target: "http://207.180.254.151:3005/setup_server",
+      pathRewrite: {
+        "^/setup_server": ""
+      }
+    }
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
@@ -60,14 +75,13 @@ export default {
     name: "fade",
     mode: "out-in"
   },
-  axios: {
-    baseURL:
-      process.env.BASE_URL ||
-      "https://udemy-test-2d952-default-rtdb.firebaseio.com",
-    credentials: false
-  },
+  // axios: {
+  //   baseURL:
+  //     process.env.BASE_URL ||
+  //     "https://udemy-test-2d952-default-rtdb.firebaseio.com",
+  //   credentials: false
+  // },
   router: {
     middleware: "log"
   },
-  serverMiddleware: [bodyParser.json(), "~/api"]
 };

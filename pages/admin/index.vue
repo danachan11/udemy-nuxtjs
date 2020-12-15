@@ -1,13 +1,9 @@
 <template>
   <div class="admin-page">
     <section class="new-post">
-      <AppButton @click="$router.push('/admin/new-post')"
-        >Create Post</AppButton
-      >
-    </section>
-    <section class="existing-post">
-      <h1>Edit Posts</h1>
-      <PostList isAdmin :posts="loadedPosts" />
+      <AppButton @click="setupServer">Setup server</AppButton>
+      <AppButton @click="startServer">Start server</AppButton>
+      <AppButton @click="stopServer">Stop server</AppButton>
     </section>
   </div>
 </template>
@@ -19,6 +15,29 @@ export default {
     loadedPosts() {
       return this.$store.getters.loadedPosts;
     }
+  },
+  methods: {
+    setupServer() {
+      this.$store
+        .dispatch("setupServer")
+        .then(() => {
+          console.log("success");
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    startServer() {
+      this.$store
+        .dispatch("startServer")
+        .then(() => {
+          console.log("success");
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    stopServer() {}
   }
 };
 </script>
