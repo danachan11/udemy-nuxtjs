@@ -1,4 +1,3 @@
-const bodyParser = require("body-parser");
 import path from 'path'
 import fs from 'fs'
 
