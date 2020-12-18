@@ -95,5 +95,9 @@ export default {
   // },
   router: {
     middleware: "log"
-  }
+  },
+  serverMiddleware: [
+    // Will register redirect-ssl npm package
+    "redirect-ssl"
+  ]
 };
