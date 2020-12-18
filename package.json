@@ -23,11 +23,5 @@
   "devDependencies": {
     "@nuxt/types": "^2.14.6",
     "@nuxt/typescript-build": "^2.0.3"
-  },
-  "config": {
-    "nuxt": {
-      "port": "443",
-      "host": "207.180.254.151"
-    }
   }
 }

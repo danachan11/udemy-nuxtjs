@@ -1,5 +1,5 @@
-import path from 'path'
-import fs from 'fs'
+import path from "path";
+import fs from "fs";
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -25,9 +25,14 @@ export default {
   },
   server: {
     https: {
-      key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
-      cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
-    }
+      key: fs.readFileSync(path.resolve(__dirname, "server.key")),
+      cert: fs.readFileSync(path.resolve(__dirname, "server.crt")),
+      ca: fs.readFileSync(
+        path.resolve(__dirname, "www_7dtdserver_com.ca-bundle")
+      )
+    },
+    port: 443,
+    timing: false
   },
   loading: {
     color: "#333019",
@@ -90,5 +95,5 @@ export default {
   // },
   router: {
     middleware: "log"
-  },
+  }
 };
