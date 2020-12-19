@@ -6,8 +6,8 @@ export default {
   head: {
     title: "My Blog",
     meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {charset: "utf-8"},
+      {name: "viewport", content: "width=device-width, initial-scale=1"},
       {
         hid: "description",
         name: "description",
@@ -15,7 +15,7 @@ export default {
       }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {rel: "icon", type: "image/x-icon", href: "/favicon.ico"},
       {
         rel: "stylesheet",
         // href: "https://fonts.googleapis.com/css2?family=Ubuntu"
@@ -52,7 +52,8 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/typescript
-    "@nuxt/typescript-build"
+    "@nuxt/typescript-build",
+    "@nuxtjs/vuetify",
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)

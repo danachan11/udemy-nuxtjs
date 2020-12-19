@@ -1,12 +1,5 @@
 <template>
-  <div>
-    <TheHeader
-      @sidenavToggle="displaySidenav = !displaySidenav"
-      :nav-items="navItems"
-    />
-    <TheSidenav :show="displaySidenav" @close="displaySidenav = false" />
-    <Nuxt />
-  </div>
+  <Nuxt />
 </template>
 
 <script>
