@@ -24,13 +24,13 @@ export default {
     ]
   },
   server: {
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, "server.key")),
-      cert: fs.readFileSync(path.resolve(__dirname, "server.crt")),
-      ca: fs.readFileSync(
-        path.resolve(__dirname, "www_7dtdserver_com.ca-bundle")
-      )
-    },
+    // https: {
+    //   key: fs.readFileSync(path.resolve(__dirname, "server.key")),
+    //   cert: fs.readFileSync(path.resolve(__dirname, "server.crt")),
+    //   ca: fs.readFileSync(
+    //     path.resolve(__dirname, "www_7dtdserver_com.ca-bundle")
+    //   )
+    // },
     port: 443,
     timing: false
   },
@@ -95,9 +95,9 @@ export default {
   // },
   router: {
     middleware: "log"
-  },
-  serverMiddleware: [
-    // Will register redirect-ssl npm package
-    "redirect-ssl"
-  ]
+  }
+  // serverMiddleware: [
+  //   // Will register redirect-ssl npm package
+  //   "redirect-ssl"
+  // ]
 };
