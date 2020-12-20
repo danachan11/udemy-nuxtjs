@@ -93,74 +93,92 @@
                       ></v-select>
                     </v-col>
 
-                    <v-col class="d-flex" cols="12" sm="6">
-                      <v-card outlined>
-                        <v-list-item two-line>
+                    <v-col cols="12" sm="6">
+                      <v-card outlined loading loader-height="4">
+                        <v-list-item class="">
                           <v-list-item-content>
-                            <div class="overline red--text">
+                            <div class="overline red--text font-weight-bold">
                               Standard plan
                             </div>
-
-                            <div>
+                            <div class="mt-4 mb-10">
                               <v-list-item-title class="headline mb-1 red--text font-weight-bold" align="center">
                                 $ 16/mo
                               </v-list-item-title>
                             </div>
-
-                            <v-col cols="12" sm="12" md="6">
+                            <v-col cols="12" sm="12" class="mb-n8 mt-n8">
                               <v-text-field
                                 value="16 Max Players"
-                                label="Solo"
                                 solo
+                                outlined
                                 readonly
-                                background-color="#f1f1f1"
-                              ></v-text-field>
+                                background-color="#f1f1f1">
+                                <v-icon slot="prepend" color="red" large>
+                                  mdi-account
+                                </v-icon>
+                              </v-text-field>
                             </v-col>
-
-                            <v-col cols="12" sm="12" md="8">
+                            <v-col cols="12" sm="12" class="mb-n8 mt-n4">
                               <v-text-field
                                 value="8912 x 8912 Map Size"
-                                label="Solo"
                                 solo
+                                outlined
                                 readonly
-                                background-color="#f1f1f1"
-                              ></v-text-field>
+                                background-color="#f1f1f1">
+                                <v-icon slot="prepend" color="red" large>
+                                  mdi-map-outline
+                                </v-icon>
+                              </v-text-field>
+                            </v-col>
+                            <v-col cols="12" sm="12" align="center">
+                              <v-btn :color="$vuetify.theme.themes.light.primary" width="40%" disabled>
+                                Select
+                              </v-btn>
                             </v-col>
                           </v-list-item-content>
                         </v-list-item>
                       </v-card>
                     </v-col>
 
-                    <v-col class="d-flex" cols="12" sm="6">
-                      <v-card outlined loading>
-                        <v-list-item two-line>
+                    <v-col cols="12" sm="6">
+                      <v-card outlined>
+                        <v-list-item class="">
                           <v-list-item-content>
-                            <div class="overline red--text">
+                            <div class="overline red--text font-weight-bold border">
                               Standard plan
                             </div>
-                            <div>
+                            <div class="mt-4 mb-10">
                               <v-list-item-title class="headline mb-1 red--text font-weight-bold" align="center">
-                                $ 16/mo
+                                $ 32/mo
                               </v-list-item-title>
                             </div>
-                            <v-col cols="12" sm="12">
+                            <v-col cols="12" sm="12" class="mb-n8 mt-n8">
                               <v-text-field
                                 value="16 Max Players"
-                                label="Solo"
                                 solo
+                                outlined
                                 readonly
-                                background-color="#f1f1f1"
-                              ></v-text-field>
+                                background-color="#f1f1f1">
+                                <v-icon slot="prepend" color="red" large>
+                                  mdi-account
+                                </v-icon>
+                              </v-text-field>
                             </v-col>
-
-                            <v-col cols="12" sm="12">
+                            <v-col cols="12" sm="12" class="mb-n8 mt-n4">
                               <v-text-field
                                 value="8912 x 8912 Map Size"
-                                label="Solo"
                                 solo
+                                outlined
                                 readonly
-                                background-color="#f1f1f1"
-                              ></v-text-field>
+                                background-color="#f1f1f1">
+                                <v-icon slot="prepend" color="red" large>
+                                  mdi-map-outline
+                                </v-icon>
+                              </v-text-field>
+                            </v-col>
+                            <v-col cols="12" sm="12" align="center">
+                              <v-btn :color="$vuetify.theme.themes.light.primary" width="40%">
+                                Select
+                              </v-btn>
                             </v-col>
                           </v-list-item-content>
                         </v-list-item>
