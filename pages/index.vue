@@ -1,703 +1,91 @@
 <template>
-  <!-- App.vue -->
-  <v-app>
-<!--    <v-navigation-drawer-->
-<!--      app-->
-<!--      color="#135088"-->
-<!--    >-->
-<!--      &lt;!&ndash; &ndash;&gt;-->
-<!--      <v-list>-->
-<!--        <v-list-item class="px-2">-->
-<!--          <v-list-item-avatar>-->
-<!--          </v-list-item-avatar>-->
-<!--        </v-list-item>-->
-<!--      </v-list>-->
+  <div>
+    <v-img
+      min-height="200px"
+      height="480"
+      width="1920"
+      src="https://i.ytimg.com/vi/c7vIIQkxC-4/maxresdefault.jpg"
+      class="white--text"
+      gradient="to right, rgba(150, 0, 0, .2), rgba(0, 0, 0, .5)"
+    >
+    </v-img>
+    <v-container>
+      <v-layout wrap>
+        <v-flex sm12 md6 offset-md3>
+          <v-card elevation="2" light tag="section">
+            <v-divider></v-divider>
+            <v-card-text>
+              <v-form ref="form">
+                <v-container fluid>
+                  <v-row align="center">
 
-<!--      <v-list-->
-<!--        nav-->
-<!--        dense-->
-<!--      >-->
-<!--        <v-list-item link>-->
-<!--          <v-list-item-icon>-->
-<!--            <v-icon color="white">mdi-folder</v-icon>-->
-<!--          </v-list-item-icon>-->
-<!--          <v-list-item-title>Servers</v-list-item-title>-->
-<!--        </v-list-item>-->
-<!--        <v-list-item link>-->
-<!--          <v-list-item-icon>-->
-<!--            <v-icon>mdi-account-multiple</v-icon>-->
-<!--          </v-list-item-icon>-->
-<!--          <v-list-item-title>Shared with me</v-list-item-title>-->
-<!--        </v-list-item>-->
-<!--        <v-list-item link>-->
-<!--          <v-list-item-icon>-->
-<!--            <v-icon>mdi-star</v-icon>-->
-<!--          </v-list-item-icon>-->
-<!--          <v-list-item-title>Starred</v-list-item-title>-->
-<!--        </v-list-item>-->
-<!--      </v-list>-->
+                    <v-col class="d-flex"
+                           cols="12"
+                           sm="6">
+                      <v-text-field
+                        v-model="email"
+                        :rules="[rules.required, rules.email]"
+                        label="Email address"
+                        outlined
+                        dense
+                        color="success"
+                      ></v-text-field>
+                    </v-col>
 
-<!--    </v-navigation-drawer>-->
+                    <v-col class="d-flex"
+                           cols="12"
+                           sm="6">
 
-    <v-app-bar app>
-      MY SERVERS
-    </v-app-bar>
+                      <v-text-field
+                        v-model="password"
+                        :rules="rules"
+                        label="Password"
+                        outlined
+                        dense
+                        counter
+                        color="success"
+                        type="password"
+                      ></v-text-field>
 
-    <v-main>
-      <v-container fluid>
-        <v-card
-          class="mx-auto"
-          width="1400px"
-        >
+                    </v-col>
 
-          <v-list-item link>
-            <v-list-item-icon>
-              <v-icon large color="#ffcc00">mdi-clock-alert</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>First time loading the server will take a few minutes to setup, please be patient. If you
-              have any problem please contact us at @
-            </v-list-item-title>
-          </v-list-item>
-
-        </v-card>
-        <v-spacer></v-spacer>
-        <v-tooltip top>
-          <template v-slot:activator="{ on, attrs }">
-            <v-card
-              class="mx-auto"
-              color="#49C144"
-              width="1400px"
-              hover
-              loader-height="6"
-              loading
-              v-bind="attrs"
-              v-on="on"
-            >
-              <v-img
-                src="https://steamcdn-a.akamaihd.net/steam/apps/251570/ss_66ab2c612cb28b4b61974bcb3380a69274c4c127.1920x1080.jpg?t=1599069217"
-                :aspect-ratio="16/4"
-                gradient="to top right, rgba(0,0,0,.33), rgba(0,0,0,.7)"
-              >
-              </v-img>
-              <v-simple-table light>
-                <template v-slot:default>
-                  <thead>
-                  <tr>
-                    <th class="text-left">
-                      NAME
-                    </th>
-                    <th class="text-left">
-                      IP ADDRESS
-                    </th>
-                    <th class="text-left">
-                      PORT
-                    </th>
-                    <th class="text-left">
-                      SLOTS
-                    </th>
-                    <th class="text-left">
-                      STATUS
-                    </th>
-                    <th class="text-left">
-                      VALID UNTIL
-                    </th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr
-                    v-for="item in server_names"
-                    :key="item.name"
-                  >
-                    <td>{{ item.name }}</td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#C0C0C0"
-                      >
-                        {{ item.ip_address }}
-                      </v-btn>
-                    </td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#C0C0C0"
-                      >
-                        {{ item.port }}
-                      </v-btn>
-                    </td>
-                    <td>{{ item.slots }}</td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#49C144"
-                      >
-                        {{ item.status }}
-                      </v-btn>
-                    </td>
-                    <td>{{ item.valid_until }}</td>
-                    <v-btn
-                      depressed
-                      color="#C0C0C0"
+                    <v-col
+                      class="d-flex"
+                      cols="12"
+                      sm="6"
                     >
-                      Config
-                    </v-btn>
+                      <v-select
+                        :v-model="gameWorld"
+                        :items="items"
+                        item-value="Foo"
+                        label="Game World"
+                        dense
+                        outlined
+                        color="success"
+                      ></v-select>
+                    </v-col>
 
-                  </tr>
-                  </tbody>
-                </template>
-              </v-simple-table>
-            </v-card>
-          </template>
-          <span>Press to config</span>
-        </v-tooltip>
-        <v-tooltip top>
-          <template v-slot:activator="{ on, attrs }">
-            <v-card
-              class="mx-auto"
-              color="#49C144"
-              width="1400px"
-              hover
-              loader-height="6"
-              loading
-              v-bind="attrs"
-              v-on="on"
-            >
-              <v-img
-                src="https://steamcdn-a.akamaihd.net/steam/apps/251570/ss_66ab2c612cb28b4b61974bcb3380a69274c4c127.1920x1080.jpg?t=1599069217"
-                :aspect-ratio="16/4"
-                gradient="to top right, rgba(0,0,0,.33), rgba(0,0,0,.7)"
-              >
-              </v-img>
-              <v-simple-table light>
-                <template v-slot:default>
-                  <thead>
-                  <tr>
-                    <th class="text-left">
-                      NAME
-                    </th>
-                    <th class="text-left">
-                      IP ADDRESS
-                    </th>
-                    <th class="text-left">
-                      PORT
-                    </th>
-                    <th class="text-left">
-                      SLOTS
-                    </th>
-                    <th class="text-left">
-                      STATUS
-                    </th>
-                    <th class="text-left">
-                      VALID UNTIL
-                    </th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr
-                    v-for="item in server_names"
-                    :key="item.name"
-                  >
-                    <td>{{ item.name }}</td>
-                    <td>
+                    <v-col class="d-flex"
+                           cols="12"
+                           sm="12">
                       <v-btn
-                        depressed
-                        color="#C0C0C0"
+                        :color="$vuetify.theme.themes.light.primary"
+                        @click="validate"
+                        width="100%"
                       >
-                        {{ item.ip_address }}
+                        SIGN UP
                       </v-btn>
-                    </td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#C0C0C0"
-                      >
-                        {{ item.port }}
-                      </v-btn>
-                    </td>
-                    <td>{{ item.slots }}</td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#49C144"
-                      >
-                        {{ item.status }}
-                      </v-btn>
-                    </td>
-                    <td>{{ item.valid_until }}</td>
-                    <v-btn
-                      depressed
-                      color="#C0C0C0"
-                    >
-                      Config
-                    </v-btn>
+                    </v-col>
 
-                  </tr>
-                  </tbody>
-                </template>
-              </v-simple-table>
-            </v-card>
-          </template>
-          <span>Press to config</span>
-        </v-tooltip>
-
-        <v-tooltip top>
-          <template v-slot:activator="{ on, attrs }">
-            <v-card
-              class="mx-auto"
-              color="#49C144"
-              width="1400px"
-              hover
-              loader-height="6"
-              loading
-              v-bind="attrs"
-              v-on="on"
-            >
-              <v-img
-                src="https://steamcdn-a.akamaihd.net/steam/apps/251570/ss_66ab2c612cb28b4b61974bcb3380a69274c4c127.1920x1080.jpg?t=1599069217"
-                :aspect-ratio="16/4"
-                gradient="to top right, rgba(0,0,0,.33), rgba(0,0,0,.7)"
-              >
-              </v-img>
-              <v-simple-table light>
-                <template v-slot:default>
-                  <thead>
-                  <tr>
-                    <th class="text-left">
-                      NAME
-                    </th>
-                    <th class="text-left">
-                      IP ADDRESS
-                    </th>
-                    <th class="text-left">
-                      PORT
-                    </th>
-                    <th class="text-left">
-                      SLOTS
-                    </th>
-                    <th class="text-left">
-                      STATUS
-                    </th>
-                    <th class="text-left">
-                      VALID UNTIL
-                    </th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr
-                    v-for="item in server_names"
-                    :key="item.name"
-                  >
-                    <td>{{ item.name }}</td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#C0C0C0"
-                      >
-                        {{ item.ip_address }}
-                      </v-btn>
-                    </td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#C0C0C0"
-                      >
-                        {{ item.port }}
-                      </v-btn>
-                    </td>
-                    <td>{{ item.slots }}</td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#49C144"
-                      >
-                        {{ item.status }}
-                      </v-btn>
-                    </td>
-                    <td>{{ item.valid_until }}</td>
-                    <v-btn
-                      depressed
-                      color="#C0C0C0"
-                    >
-                      Config
-                    </v-btn>
-
-                  </tr>
-                  </tbody>
-                </template>
-              </v-simple-table>
-            </v-card>
-          </template>
-          <span>Press to config</span>
-        </v-tooltip>
-
-        <v-tooltip top>
-          <template v-slot:activator="{ on, attrs }">
-            <v-card
-              class="mx-auto"
-              color="#49C144"
-              width="1400px"
-              hover
-              loader-height="6"
-              loading
-              v-bind="attrs"
-              v-on="on"
-            >
-              <v-img
-                src="https://steamcdn-a.akamaihd.net/steam/apps/251570/ss_66ab2c612cb28b4b61974bcb3380a69274c4c127.1920x1080.jpg?t=1599069217"
-                :aspect-ratio="16/4"
-                gradient="to top right, rgba(0,0,0,.33), rgba(0,0,0,.7)"
-              >
-              </v-img>
-              <v-simple-table light>
-                <template v-slot:default>
-                  <thead>
-                  <tr>
-                    <th class="text-left">
-                      NAME
-                    </th>
-                    <th class="text-left">
-                      IP ADDRESS
-                    </th>
-                    <th class="text-left">
-                      PORT
-                    </th>
-                    <th class="text-left">
-                      SLOTS
-                    </th>
-                    <th class="text-left">
-                      STATUS
-                    </th>
-                    <th class="text-left">
-                      VALID UNTIL
-                    </th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr
-                    v-for="item in server_names"
-                    :key="item.name"
-                  >
-                    <td>{{ item.name }}</td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#C0C0C0"
-                      >
-                        {{ item.ip_address }}
-                      </v-btn>
-                    </td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#C0C0C0"
-                      >
-                        {{ item.port }}
-                      </v-btn>
-                    </td>
-                    <td>{{ item.slots }}</td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#49C144"
-                      >
-                        {{ item.status }}
-                      </v-btn>
-                    </td>
-                    <td>{{ item.valid_until }}</td>
-                    <v-btn
-                      depressed
-                      color="#C0C0C0"
-                    >
-                      Config
-                    </v-btn>
-
-                  </tr>
-                  </tbody>
-                </template>
-              </v-simple-table>
-            </v-card>
-          </template>
-          <span>Press to config</span>
-        </v-tooltip>
-
-        <v-tooltip top>
-          <template v-slot:activator="{ on, attrs }">
-            <v-card
-              class="mx-auto"
-              color="#49C144"
-              width="1400px"
-              hover
-              loader-height="6"
-              loading
-              v-bind="attrs"
-              v-on="on"
-            >
-              <v-img
-                src="https://steamcdn-a.akamaihd.net/steam/apps/251570/ss_66ab2c612cb28b4b61974bcb3380a69274c4c127.1920x1080.jpg?t=1599069217"
-                :aspect-ratio="16/4"
-                gradient="to top right, rgba(0,0,0,.33), rgba(0,0,0,.7)"
-              >
-              </v-img>
-              <v-simple-table light>
-                <template v-slot:default>
-                  <thead>
-                  <tr>
-                    <th class="text-left">
-                      NAME
-                    </th>
-                    <th class="text-left">
-                      IP ADDRESS
-                    </th>
-                    <th class="text-left">
-                      PORT
-                    </th>
-                    <th class="text-left">
-                      SLOTS
-                    </th>
-                    <th class="text-left">
-                      STATUS
-                    </th>
-                    <th class="text-left">
-                      VALID UNTIL
-                    </th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr
-                    v-for="item in server_names"
-                    :key="item.name"
-                  >
-                    <td>{{ item.name }}</td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#C0C0C0"
-                      >
-                        {{ item.ip_address }}
-                      </v-btn>
-                    </td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#C0C0C0"
-                      >
-                        {{ item.port }}
-                      </v-btn>
-                    </td>
-                    <td>{{ item.slots }}</td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#49C144"
-                      >
-                        {{ item.status }}
-                      </v-btn>
-                    </td>
-                    <td>{{ item.valid_until }}</td>
-                    <v-btn
-                      depressed
-                      color="#C0C0C0"
-                    >
-                      Config
-                    </v-btn>
-
-                  </tr>
-                  </tbody>
-                </template>
-              </v-simple-table>
-            </v-card>
-          </template>
-          <span>Press to config</span>
-        </v-tooltip>
-
-        <v-tooltip top>
-          <template v-slot:activator="{ on, attrs }">
-            <v-card
-              class="mx-auto"
-              color="#49C144"
-              width="1400px"
-              hover
-              loader-height="6"
-              loading
-              v-bind="attrs"
-              v-on="on"
-            >
-              <v-img
-                src="https://steamcdn-a.akamaihd.net/steam/apps/251570/ss_66ab2c612cb28b4b61974bcb3380a69274c4c127.1920x1080.jpg?t=1599069217"
-                :aspect-ratio="16/4"
-                gradient="to top right, rgba(0,0,0,.33), rgba(0,0,0,.7)"
-              >
-              </v-img>
-              <v-simple-table light>
-                <template v-slot:default>
-                  <thead>
-                  <tr>
-                    <th class="text-left">
-                      NAME
-                    </th>
-                    <th class="text-left">
-                      IP ADDRESS
-                    </th>
-                    <th class="text-left">
-                      PORT
-                    </th>
-                    <th class="text-left">
-                      SLOTS
-                    </th>
-                    <th class="text-left">
-                      STATUS
-                    </th>
-                    <th class="text-left">
-                      VALID UNTIL
-                    </th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr
-                    v-for="item in server_names"
-                    :key="item.name"
-                  >
-                    <td>{{ item.name }}</td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#C0C0C0"
-                      >
-                        {{ item.ip_address }}
-                      </v-btn>
-                    </td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#C0C0C0"
-                      >
-                        {{ item.port }}
-                      </v-btn>
-                    </td>
-                    <td>{{ item.slots }}</td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#49C144"
-                      >
-                        {{ item.status }}
-                      </v-btn>
-                    </td>
-                    <td>{{ item.valid_until }}</td>
-                    <v-btn
-                      depressed
-                      color="#C0C0C0"
-                    >
-                      Config
-                    </v-btn>
-
-                  </tr>
-                  </tbody>
-                </template>
-              </v-simple-table>
-            </v-card>
-          </template>
-          <span>Press to config</span>
-        </v-tooltip>
-
-        <v-tooltip top>
-          <template v-slot:activator="{ on, attrs }">
-            <v-card
-              class="mx-auto"
-              color="#49C144"
-              width="1400px"
-              hover
-              loader-height="6"
-              loading
-              v-bind="attrs"
-              v-on="on"
-            >
-              <v-img
-                src="https://steamcdn-a.akamaihd.net/steam/apps/251570/ss_66ab2c612cb28b4b61974bcb3380a69274c4c127.1920x1080.jpg?t=1599069217"
-                :aspect-ratio="16/4"
-                gradient="to top right, rgba(0,0,0,.33), rgba(0,0,0,.7)"
-              >
-              </v-img>
-              <v-simple-table light>
-                <template v-slot:default>
-                  <thead>
-                  <tr>
-                    <th class="text-left">
-                      NAME
-                    </th>
-                    <th class="text-left">
-                      IP ADDRESS
-                    </th>
-                    <th class="text-left">
-                      PORT
-                    </th>
-                    <th class="text-left">
-                      SLOTS
-                    </th>
-                    <th class="text-left">
-                      STATUS
-                    </th>
-                    <th class="text-left">
-                      VALID UNTIL
-                    </th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr
-                    v-for="item in server_names"
-                    :key="item.name"
-                  >
-                    <td>{{ item.name }}</td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#C0C0C0"
-                      >
-                        {{ item.ip_address }}
-                      </v-btn>
-                    </td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#C0C0C0"
-                      >
-                        {{ item.port }}
-                      </v-btn>
-                    </td>
-                    <td>{{ item.slots }}</td>
-                    <td>
-                      <v-btn
-                        depressed
-                        color="#49C144"
-                      >
-                        {{ item.status }}
-                      </v-btn>
-                    </td>
-                    <td>{{ item.valid_until }}</td>
-                    <v-btn
-                      depressed
-                      color="#C0C0C0"
-                    >
-                      Config
-                    </v-btn>
-
-                  </tr>
-                  </tbody>
-                </template>
-              </v-simple-table>
-            </v-card>
-          </template>
-          <span>Press to config</span>
-        </v-tooltip>
-
-        <!-- If using vue-router -->
-        <router-view>
-        </router-view>
-      </v-container>
-    </v-main>
-
-
-  </v-app>
+                  </v-row>
+                </v-container>
+              </v-form>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </div>
 </template>
 
 <style>
@@ -710,37 +98,25 @@ html {
 export default {
   data() {
     return {
-      server_names: [
-        {
-          name: 'My awesome server name, man',
-          ip_address: "192.168.0.1",
-          port: 7777,
-          slots: "0/32",
-          status: "online",
-          valid_until: "12 June 2020"
+      gameWorld: "Foo",
+      password: "",
+      email: "",
+      showPassword: false,
+      rules: {
+        required: value => !!value || 'Required.',
+        counter: value => value.length <= 20 || 'Max 20 characters',
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
         },
-      ],
-      messages: [
-        {
-          from: 'You',
-          message: `Sure, I'll see you later.`,
-          time: '10:42am',
-          color: 'deep-purple lighten-1',
-        },
-        {
-          from: 'John Doe',
-          message: 'Yeah, sure. Does 1:00pm work?',
-          time: '10:37am',
-          color: 'green',
-        },
-        {
-          from: 'You',
-          message: 'Did you still want to grab lunch today?',
-          time: '9:47am',
-          color: 'deep-purple lighten-1',
-        },
-      ],
+      },
+      items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
     }
+  },
+  methods: {
+    validate() {
+      this.$refs.form.validate()
+    },
   },
 }
 </script>

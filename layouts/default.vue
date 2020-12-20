@@ -1,42 +1,21 @@
 <template>
-  <Nuxt />
+  <v-app>
+
+    <home-app-bar/>
+
+    <home-view/>
+
+  </v-app>
 </template>
 
 <script>
-import TheHeader from "@/components/Navigation/TheHeader";
-import TheSidenav from "@/components/Navigation/TheSidenav";
 export default {
-  components: {
-    TheHeader,
-    TheSidenav
-  },
-  data() {
-    return {
-      displaySidenav: false,
-      navItems: [
-        {
-          text: "About",
-          to: "/about"
-        },
-        {
-          text: "Blogs",
-          to: "/posts"
-        },
-        {
-          text: "Admin",
-          to: "/admin"
-        }
-      ]
-    };
-  }
-};
-</script>
+  name: 'HomeLayout',
 
-<style>
-html {
-  font-family: "B612", san-serif;
+  components: {
+    HomeAppBar: () => import('@/layouts/AppBar'),
+    HomeFooter: () => import('@/layouts/Footer'),
+    HomeView: () => import('@/layouts/View'),
+  },
 }
-body {
-  margin: 0;
-}
-</style>
+</script>
