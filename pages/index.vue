@@ -55,9 +55,10 @@
                       sm="6"
                     >
                       <v-select
-                        :v-model="gameWorld"
-                        :items="items"
-                        item-value="Foo"
+                        item-text="name"
+                        item-value="last"
+                        v-model="defaultWorld"
+                        :items="people"
                         label="Game World"
                         dense
                         outlined
@@ -98,6 +99,25 @@ html {
 export default {
   data() {
     return {
+
+      defaultWorld: {
+        name: "Navezgene",
+        last: "World1"
+      },
+      people: [
+        {
+          name: "Navezgene",
+          last: "World1"
+        },
+        {
+          name: "OtherMap",
+          last: "World2"
+        }
+      ],
+
+
+
+
       gameWorld: "Foo",
       password: "",
       email: "",
