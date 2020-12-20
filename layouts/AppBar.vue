@@ -3,11 +3,11 @@
     <v-app-bar
       id="home-app-bar"
       app
-      color="white"
+      color="#090909"
       elevation="1"
       height="60"
     >
-      <base-img
+      <v-img
         :src="require('@/assets/logo.svg')"
         class="mr-3 hidden-xs-only"
         contain
@@ -15,7 +15,7 @@
         width="100%"
       />
 
-      <base-img
+      <v-img
         :src="require('@/assets/zero-logo-light.svg')"
         contain
         max-width="128"
@@ -28,7 +28,7 @@
         <v-tabs
           class="hidden-sm-and-down"
           optional
-          background-color="#e5e5e5"
+          background-color="#090909"
         >
           <v-tab
             v-for="(item, i) in items"
@@ -36,8 +36,8 @@
             :to="item.to"
             :exact="item.name === 'Home'"
             :ripple="false"
-            active-class="text--primary"
-            class="font-weight-bold"
+            active-class="white--text"
+            class="font-weight-bold white--text"
             min-width="96"
             text
           >
