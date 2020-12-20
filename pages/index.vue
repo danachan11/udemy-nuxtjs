@@ -19,49 +19,34 @@
                 <v-container fluid>
                   <v-row align="center">
 
-                    <v-col class="d-flex"
-                           cols="12"
-                           sm="12"
-                           offset
-                    >
+                    <v-col class="d-flex" cols="12" sm="12" offset>
                       <h1 class="red--text">Sign up to get 1 day free trial</h1>
                     </v-col>
 
-                    <v-col class="d-flex"
-                           cols="12"
-                           sm="6">
+                    <v-col class="d-flex mb-n4" cols="12" sm="6">
                       <v-text-field
                         v-model="email"
                         :rules="[rules.required, rules.email]"
                         label="Email address"
                         outlined
-                        dense
                         color="success"
+                        class=""
                       ></v-text-field>
                     </v-col>
 
-                    <v-col class="d-flex"
-                           cols="12"
-                           sm="6">
-
+                    <v-col class="d-flex mb-n4" cols="12" sm="6">
                       <v-text-field
                         v-model="password"
                         :rules="[rules.required]"
                         label="Password"
                         outlined
-                        dense
                         counter
                         color="success"
                         type="password"
                       ></v-text-field>
-
                     </v-col>
 
-                    <v-col
-                      class="d-flex"
-                      cols="12"
-                      sm="6"
-                    >
+                    <v-col class="d-flex" cols="12" sm="6">
                       <v-select
                         :rules="[rules.required]"
                         item-text="name"
@@ -69,17 +54,13 @@
                         v-model="defaultWorld"
                         :items="people"
                         label="Game World"
-                        dense
                         outlined
                         color="success"
+                        item-color="red"
                       ></v-select>
                     </v-col>
 
-                    <v-col
-                      class="d-flex"
-                      cols="12"
-                      sm="6"
-                    >
+                    <v-col class="d-flex" cols="12" sm="6">
                       <v-select
                         :rules="[rules.required]"
                         item-text="name"
@@ -87,7 +68,6 @@
                         v-model="defaultWorld"
                         :items="people"
                         label="Game World"
-                        dense
                         outlined
                         color="success"
                       ></v-select>
@@ -98,7 +78,7 @@
                         <v-list-item class="">
                           <v-list-item-content>
                             <div class="overline red--text font-weight-bold">
-                              Standard plan
+                              <h1>Standard plan</h1>
                             </div>
                             <div class="mt-4 mb-10">
                               <v-list-item-title class="headline mb-1 red--text font-weight-bold" align="center">
@@ -144,7 +124,7 @@
                         <v-list-item class="">
                           <v-list-item-content>
                             <div class="overline red--text font-weight-bold border">
-                              Standard plan
+                              <h1>Standard plan</h1>
                             </div>
                             <div class="mt-4 mb-10">
                               <v-list-item-title class="headline mb-1 red--text font-weight-bold" align="center">
