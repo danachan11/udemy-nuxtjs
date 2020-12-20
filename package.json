@@ -8,7 +8,6 @@
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
     "heroku-postBuild": "npm run build",
-    "commit": "git add . && git commit -m 'messages' && git push"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.0.0",
