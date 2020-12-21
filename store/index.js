@@ -8,18 +8,18 @@ const createStore = () => {
       token: ""
     },
     mutations: {
-      setPosts(state, posts) {
-        state.loadedPosts = posts;
-      },
-      addPost(state, post) {
-        state.loadedPosts.push(post);
-      },
-      editPost(state, edittedPost) {
-        const postIndex = state.loadedPosts.findIndex(
-          post => post.id === edittedPost.id
-        );
-        state.loadedPosts[postIndex] = edittedPost;
-      },
+      // setPosts(state, posts) {
+      //   state.loadedPosts = posts;
+      // },
+      // addPost(state, post) {
+      //   state.loadedPosts.push(post);
+      // },
+      // editPost(state, edittedPost) {
+      //   const postIndex = state.loadedPosts.findIndex(
+      //     post => post.id === edittedPost.id
+      //   );
+      //   state.loadedPosts[postIndex] = edittedPost;
+      // },
       setToken(state, token) {
         state.token = token;
       },
@@ -28,17 +28,47 @@ const createStore = () => {
       }
     },
     actions: {
-      setupServer(){
+      setupServer() {
         return this.$axios.$post("/setup_server/", {"id": "1234", "token": "token1234"});
       },
       startServer(vuexContext) {
         return this.$axios.$post("/start_server/", {"id": "1234", "token": "token1234"});
       },
-      //
-      //
-      //
-      //
-      //
+      signup(vuexContext, email, password) {
+        return this.$axios
+          .$post("/signup/", {"email": email, "password": password})
+          .then(response => {
+            console.log(`sign up response ${response}`)
+            // const expiresInSeconds = result.expiresIn * 1000;
+            // const expirationDate = new Date().getTime() + +expiresInSeconds;
+            // const token = result.idToken;
+            // vuexContext.commit("setToken", token);
+            // localStorage.setItem("token", token);
+            // localStorage.setItem("tokenExpiration", expirationDate);
+            // Cookie.set("jwt", token);
+            // Cookie.set("tokenExpiration", expirationDate);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      },
+
+      login(vuexContext, params) {
+
+        console.log(`store ${params.email} ${params.password}`)
+
+        return this.$axios
+          .$post("/api/login/", {"email": params.email, "password": params.password})
+          .then(response => {
+            const token = response.access_token
+            vuexContext.commit("setToken", token);
+            localStorage.setItem("token", token);
+            Cookie.set("jwt", token);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      },
       nuxtServerInit(vuexContext, context) {
         // return context.app.$axios
         //   .$get("/posts.json")
@@ -54,81 +84,36 @@ const createStore = () => {
         //     context.error(e);
         //   });
       },
-      setPosts(vuexContext, posts) {
-        vuexContext.commit("setPosts", posts);
-      },
-      addPost(vuexContext, post) {
-        const createdPost = { ...post, updatedDate: new Date() };
-        return this.$axios
-          .$post("/posts.json?auth=" + vuexContext.state.token, createdPost)
-          .then(data => {
-            vuexContext.commit("addPost", {
-              ...createdPost,
-              id: data.name
-            });
-          });
-      },
-      editPost(vuexContext, edittedPost) {
-        return this.$axios
-          .$put(
-            "/posts/" +
-              edittedPost.id +
-              ".json?auth=" +
-              vuexContext.state.token,
-            edittedPost
-          )
-          .then(data => {
-            vuexContext.commit("editPost", data);
-          })
-          .catch(e => {
-            console.log(e);
-          });
-      },
-      signinUser(vuexContext, params) {
-        return this.$axios
-          .$post(
-            "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" +
-              process.env.firebaseAPI,
-            params
-          )
-          .then(result => {
-            const expiresInSeconds = result.expiresIn * 1000;
-            const expirationDate = new Date().getTime() + +expiresInSeconds;
-            const token = result.idToken;
-            vuexContext.commit("setToken", token);
-            localStorage.setItem("token", token);
-            localStorage.setItem("tokenExpiration", expirationDate);
-            Cookie.set("jwt", token);
-            Cookie.set("tokenExpiration", expirationDate);
-            return this.$axios.$post("http://localhost:3000/api/track-data", {
-              data: "Authenticated"
-            });
-          })
-          .catch(e => {
-            console.log(e);
-          });
-      },
-      signupUser(vuexContext, params) {
-        return this.$axios
-          .$post(
-            "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" +
-              process.env.firebaseAPI,
-            params
-          )
-          .then(result => {
-            const expiresInSeconds = result.expiresIn * 1000;
-            const expirationDate = new Date().getTime() + +expiresInSeconds;
-            const token = result.idToken;
-            vuexContext.commit("setToken", token);
-            localStorage.setItem("token", token);
-            localStorage.setItem("tokenExpiration", expirationDate);
-            Cookie.set("jwt", token);
-            Cookie.set("tokenExpiration", expirationDate);
-          })
-          .catch(e => {
-            console.log(e);
-          });
-      },
+      // setPosts(vuexContext, posts) {
+      //   vuexContext.commit("setPosts", posts);
+      // },
+      // addPost(vuexContext, post) {
+      //   const createdPost = { ...post, updatedDate: new Date() };
+      //   return this.$axios
+      //     .$post("/posts.json?auth=" + vuexContext.state.token, createdPost)
+      //     .then(data => {
+      //       vuexContext.commit("addPost", {
+      //         ...createdPost,
+      //         id: data.name
+      //       });
+      //     });
+      // },
+      // editPost(vuexContext, edittedPost) {
+      //   return this.$axios
+      //     .$put(
+      //       "/posts/" +
+      //         edittedPost.id +
+      //         ".json?auth=" +
+      //         vuexContext.state.token,
+      //       edittedPost
+      //     )
+      //     .then(data => {
+      //       vuexContext.commit("editPost", data);
+      //     })
+      //     .catch(e => {
+      //       console.log(e);
+      //     });
+      // },
       initAuth(vuexContext, req) {
         var token = "";
         var expirationDate = "";

@@ -58,15 +58,27 @@ export default {
 
   proxy: {
     "/start_server": {
-      target: "http://207.180.254.151:3005/copy",
+      target: "http://207.180.254.151:9000/copy",
       pathRewrite: {
         "^/start_server": ""
       }
     },
     "/setup_server": {
-      target: "http://207.180.254.151:3005/setup_server",
+      target: "http://207.180.254.151:9000/setup_server",
       pathRewrite: {
         "^/setup_server": ""
+      }
+    },
+    "/signup": {
+      target: "http://207.180.254.151:9000/signup",
+      pathRewrite: {
+        "^/signup": ""
+      }
+    },
+    "/api/login": {
+      target: "http://207.180.254.151:9000/api/login",
+      pathRewrite: {
+        "^/api/login": ""
       }
     }
   },

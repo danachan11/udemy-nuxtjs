@@ -1,5 +1,5 @@
 <template>
-  <PostList :posts="loadedPosts" />
+<!--  <PostList :posts="loadedPosts" />-->
 </template>
 
 <script>

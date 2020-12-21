@@ -50,9 +50,9 @@
                       <v-select
                         :rules="[rules.required]"
                         item-text="name"
-                        item-value="last"
+                        item-value="value"
                         v-model="defaultWorld"
-                        :items="people"
+                        :items="world"
                         label="Game World"
                         outlined
                         color="success"
@@ -64,10 +64,10 @@
                       <v-select
                         :rules="[rules.required]"
                         item-text="name"
-                        item-value="last"
-                        v-model="defaultWorld"
-                        :items="people"
-                        label="Game World"
+                        item-value="value"
+                        v-model="defaultRegion"
+                        :items="region"
+                        label="Server Region"
                         outlined
                         color="success"
                       ></v-select>
@@ -170,8 +170,8 @@
                            sm="12">
                       <v-btn
                         :color="$vuetify.theme.themes.light.primary"
-                        @click="validate"
                         width="100%"
+                        @click="signup"
                       >
                         SIGN UP
                       </v-btn>
@@ -195,30 +195,43 @@ html {
 </style>
 
 <script>
+import BaseTextField from "../components/Base/BaseTextField";
+
 export default {
+  components: {BaseTextField},
   data() {
     return {
-
       defaultWorld: {
         name: "Navezgene",
-        last: "World1"
+        value: "World1"
       },
-      people: [
+      world: [
         {
           name: "Navezgene",
-          last: "World1"
+          value: "World1"
         },
         {
           name: "OtherMap",
-          last: "World2"
+          value: "World2"
         }
       ],
-
-
-      gameWorld: "Foo",
+      defaultRegion: {
+        name: "America",
+        value: "America1"
+      },
+      region: [
+        {
+          name: "America",
+          value: "America1"
+        },
+        {
+          name: "Europe",
+          value: "Europe1"
+        }
+      ],
       password: "",
       email: "",
-      showPassword: false,
+      plan: "standard",
       rules: {
         required: value => !!value || 'Required.',
         counter: value => value.length <= 20 || 'Max 20 characters',
@@ -231,9 +244,18 @@ export default {
     }
   },
   methods: {
-    validate() {
-      this.$refs.form.validate()
+    validateForm() {
+      return this.$refs.form.validate()
     },
+    signup() {
+      const bo = this.validateForm()
+      if(!bo){
+        console.log(`form is not validated`)
+        return
+      }
+      console.log(`form is validated`)
+      console.log(`email: ${this.email} password: ${this.password}`)
+    }
   },
 }
 </script>
