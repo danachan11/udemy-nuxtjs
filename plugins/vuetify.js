@@ -10,7 +10,7 @@ export default ctx => {
     theme: {
       themes: {
         light: {
-          primary: '#f44336',
+          primary: '#add8e6',
           secondary: '#9368e9',
         },
         dark: {

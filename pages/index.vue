@@ -20,7 +20,7 @@
                   <v-row align="center">
 
                     <v-col class="d-flex" cols="12" sm="12" offset>
-                      <h1 class="red--text">Sign up to get 1 day free trial</h1>
+                      <h1 class="primary--text">Sign up to get 1 day free trial</h1>
                     </v-col>
 
                     <v-col class="d-flex mb-n4" cols="12" sm="6">
@@ -56,7 +56,7 @@
                         label="Game World"
                         outlined
                         color="success"
-                        item-color="red"
+                        item-color="primary--text"
                       ></v-select>
                     </v-col>
 
@@ -74,14 +74,14 @@
                     </v-col>
 
                     <v-col cols="12" sm="6">
-                      <v-card outlined loading loader-height="4">
-                        <v-list-item class="">
+                      <v-card outlined class="pa-4">
+                        <v-list-item>
                           <v-list-item-content>
-                            <div class="overline red--text font-weight-bold">
+                            <div class="overline primary--text font-weight-bold">
                               <h1>Standard plan</h1>
                             </div>
                             <div class="mt-4 mb-10">
-                              <v-list-item-title class="headline mb-1 red--text font-weight-bold" align="center">
+                              <v-list-item-title class="headline mb-1 primary--text font-weight-bold" align="center">
                                 $ 16/mo
                               </v-list-item-title>
                             </div>
@@ -92,7 +92,7 @@
                                 outlined
                                 readonly
                                 background-color="#f1f1f1">
-                                <v-icon slot="prepend" color="red" large>
+                                <v-icon slot="prepend" color="primary" large>
                                   mdi-account
                                 </v-icon>
                               </v-text-field>
@@ -104,7 +104,7 @@
                                 outlined
                                 readonly
                                 background-color="#f1f1f1">
-                                <v-icon slot="prepend" color="red" large>
+                                <v-icon slot="prepend" color="primary" large>
                                   mdi-map-outline
                                 </v-icon>
                               </v-text-field>
@@ -123,11 +123,11 @@
                       <v-card outlined>
                         <v-list-item class="">
                           <v-list-item-content>
-                            <div class="overline red--text font-weight-bold border">
+                            <div class="overline primary--text font-weight-bold border">
                               <h1>Standard plan</h1>
                             </div>
                             <div class="mt-4 mb-10">
-                              <v-list-item-title class="headline mb-1 red--text font-weight-bold" align="center">
+                              <v-list-item-title class="headline mb-1 primary--text font-weight-bold" align="center">
                                 $ 32/mo
                               </v-list-item-title>
                             </div>
@@ -138,7 +138,7 @@
                                 outlined
                                 readonly
                                 background-color="#f1f1f1">
-                                <v-icon slot="prepend" color="red" large>
+                                <v-icon slot="prepend" color="primary" large>
                                   mdi-account
                                 </v-icon>
                               </v-text-field>
@@ -150,7 +150,7 @@
                                 outlined
                                 readonly
                                 background-color="#f1f1f1">
-                                <v-icon slot="prepend" color="red" large>
+                                <v-icon slot="prepend" color="primary" large>
                                   mdi-map-outline
                                 </v-icon>
                               </v-text-field>

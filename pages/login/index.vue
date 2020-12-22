@@ -1,49 +1,59 @@
-<template>
 
-  <v-container>
-    <v-layout wrap>
-      <v-flex sm12 md6 offset-md3>
-        <v-card elevation="2" light tag="section">
-          <v-card-text>
-            <v-form ref="loginForm"
-                    lazy-validation>
-              <v-container fluid>
-                <v-row align="center">
-                  <v-col class="d-flex mb-n4" cols="12" sm="6">
-                    <v-text-field
-                      v-model="email"
-                      :rules="[rules.required, rules.email]"
-                      label="Email address"
-                      outlined
-                      color="success"
-                      class=""
-                    ></v-text-field>
-                  </v-col>
-                  <v-col class="d-flex mb-n4" cols="12" sm="6">
-                    <v-text-field
-                      v-model="password"
-                      :rules="[rules.required]"
-                      label="Password"
-                      outlined
-                      counter
-                      color="success"
-                      type="password"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col class="d-flex" cols="12" sm="12">
-                    <v-btn :color="$vuetify.theme.themes.light.primary" @click="signin" width="100%">
-                      LOG IN
-                    </v-btn>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-form>
-          </v-card-text>
-        </v-card>
-      </v-flex>
-    </v-layout>
-  </v-container>
+
+<template>
+  <v-card class="overflow-hidden">
+    <v-sheet
+      id="scrolling-techniques-7"
+      class="overflow-y-auto mt-16"
+      max-height="1080"
+    >
+      <v-container>
+        <v-layout wrap>
+          <v-flex sm12 md6 offset-md3>
+            <v-card elevation="2" light tag="section">
+              <v-card-text>
+                <v-form ref="loginForm"
+                        lazy-validation>
+                  <v-container fluid>
+                    <v-row align="center">
+                      <v-col class="d-flex mb-n4" cols="12" sm="6">
+                        <v-text-field
+                          v-model="email"
+                          :rules="[rules.required, rules.email]"
+                          label="Email address"
+                          outlined
+                          color="success"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col class="d-flex mb-n4" cols="12" sm="6">
+                        <v-text-field
+                          v-model="password"
+                          :rules="[rules.required]"
+                          label="Password"
+                          outlined
+                          counter
+                          color="success"
+                          type="password"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col class="d-flex" cols="12" sm="12">
+                        <v-btn :color="$vuetify.theme.themes.light.primary" @click="signin" width="100%">
+                          LOG IN
+                        </v-btn>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-form>
+              </v-card-text>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+
+    </v-sheet>
+  </v-card>
 </template>
+
 
 <script>
 export default {

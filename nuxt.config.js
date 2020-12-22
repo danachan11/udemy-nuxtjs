@@ -51,7 +51,6 @@ export default {
     // https://go.nuxtjs.dev/typescript
     "@nuxt/typescript-build",
     "@nuxtjs/vuetify",
-
   ],
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
@@ -79,6 +78,12 @@ export default {
       target: "http://207.180.254.151:9000/api/login",
       pathRewrite: {
         "^/api/login": ""
+      }
+    },
+    "/api/users/get_servers": {
+      target: "http://127.0.0.1:9000/api/users/get_servers",
+      pathRewrite: {
+        "^/api/users/get_servers": ""
       }
     }
   },

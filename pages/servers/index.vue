@@ -1,105 +1,18 @@
 <template>
-
   <v-container fluid>
     <v-card class="mx-auto mb-8" width="1400px">
       <v-list-item link>
         <v-list-item-icon>
-          <v-icon large :color="$vuetify.theme.themes.light.primary">mdi-clock-alert</v-icon>
+          <v-icon large color="orange">mdi-clock-alert</v-icon>
         </v-list-item-icon>
         <v-list-item-title>First time loading the server will take a few minutes to setup, please be patient. If you
           have any problem please contact us at @
         </v-list-item-title>
       </v-list-item>
     </v-card>
-    <v-tooltip top>
-      <template v-slot:activator="{ on, attrs }">
-        <v-card
-          class="mx-auto"
-          color="#49C144"
-          width="1400px"
-          hover
-          loader-height="6"
-          loading
-          v-bind="attrs"
-          v-on="on"
-        >
-          <v-img
-            src="https://steamcdn-a.akamaihd.net/steam/apps/251570/ss_66ab2c612cb28b4b61974bcb3380a69274c4c127.1920x1080.jpg?t=1599069217"
-            :aspect-ratio="16/4"
-            gradient="to top right, rgba(0,0,0,.33), rgba(0,0,0,.7)"
-          >
-          </v-img>
-          <v-simple-table light>
-            <template v-slot:default>
-              <thead>
-              <tr>
-                <th class="text-left">
-                  NAME
-                </th>
-                <th class="text-left">
-                  IP ADDRESS
-                </th>
-                <th class="text-left">
-                  PORT
-                </th>
-                <th class="text-left">
-                  SLOTS
-                </th>
-                <th class="text-left">
-                  STATUS
-                </th>
-                <th class="text-left">
-                  VALID UNTIL
-                </th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr
-                v-for="item in server_names"
-                :key="item.name"
-              >
-                <td>{{ item.name }}</td>
-                <td>
-                  <v-btn
-                    depressed
-                    color="#C0C0C0"
-                  >
-                    {{ item.ip_address }}
-                  </v-btn>
-                </td>
-                <td>
-                  <v-btn
-                    depressed
-                    color="#C0C0C0"
-                  >
-                    {{ item.port }}
-                  </v-btn>
-                </td>
-                <td>{{ item.slots }}</td>
-                <td>
-                  <v-btn
-                    depressed
-                    color="#49C144"
-                  >
-                    {{ item.status }}
-                  </v-btn>
-                </td>
-                <td>{{ item.valid_until }}</td>
-                <v-btn
-                  depressed
-                  color="#C0C0C0"
-                >
-                  Config
-                </v-btn>
-
-              </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
-        </v-card>
-      </template>
-      <span>Press to config</span>
-    </v-tooltip>
+    <div v-for="(server, index) in servers" :key="index">
+      <ServerCard @serverClicked="onServerClicked" :src="src" :server-info="server"></ServerCard>
+    </div>
   </v-container>
 </template>
 
@@ -109,20 +22,75 @@ html {
 }
 </style>
 
+
 <script>
+import ServerCard from "../../components/ServerCard";
+
 export default {
+  components: {ServerCard},
+  asyncData({context, app, store}) {
+
+    // const token = store.state.token
+
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmFAZ21haWwuY29tIiwic3ViIjoiNWZkYjY4ODMxYzA4ZjRjMDFjYWJlZDE0IiwiaWF0IjoxNjA4NTQxODY4LCJleHAiOjE2MDg5MDE4Njh9.TOqF08ebPKcuY0rAApCAiwZPt2t-xjTOKMh9ybaxm-w"
+
+    const config = {
+      headers: {Authorization: `Bearer ${token}`}
+    };
+
+    console.log(`trying getting servers, my token ${token}`)
+
+    return app.$axios
+      .$get("/api/users/get_servers", config)
+      .then(response => {
+        console.log(`my message ${response.message}`)
+        console.log(`my data ${response.data}`)
+        return {
+          servers: response.data
+        }
+        // return {
+        //   loadedPost: {...data, id: context.params.postId}
+        // };
+      })
+      .catch(e => {
+
+      });
+  },
   data() {
     return {
-      server_names: [
-        {
-          name: 'My awesome servers name, man',
-          ip_address: "192.168.0.1",
-          port: 7777,
-          slots: "0/32",
-          status: "online",
-          valid_until: "12 June 2020"
-        },
-      ],
+      src: "https://steamcdn-a.akamaihd.net/steam/apps/251570/ss_66ab2c612cb28b4b61974bcb3380a69274c4c127.1920x1080.jpg?t=1599069217",
+      // servers2: [
+      //   [
+      //     {
+      //       name: "My awesome servers name, man",
+      //       ip_address: "192.168.0.122",
+      //       port: 7777,
+      //       slots: "0/32",
+      //       status: "online",
+      //       valid_until: "12 June 2020"
+      //     },
+      //   ],
+      //   [
+      //     {
+      //       "name": "My awesome servers name, man",
+      //       "ip_address": "192.168.0.122222",
+      //       "port": 7777,
+      //       "slots": "0/32",
+      //       "status": "online",
+      //       "valid_until": "12 June 2020"
+      //     },
+      //   ],
+      //   [
+      //     {
+      //       name: 'My awesome servers name, man',
+      //       ip_address: "192.168.0.39292",
+      //       port: 7777,
+      //       slots: "0/32",
+      //       status: "online",
+      //       valid_until: "12 June 2020"
+      //     },
+      //   ],
+      // ],
       messages: [
         {
           from: 'You',
@@ -146,8 +114,8 @@ export default {
     }
   },
   methods: {
-    hello() {
-      console.log(`fucking shit`)
+    onServerClicked(server) {
+      this.$router.push(`/servers/${server._id}`)
     }
   }
 }
