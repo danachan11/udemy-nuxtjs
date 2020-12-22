@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row v-show="show">
     <v-col cols="12" sm="7" class="mt-n2 mb-n2">
       <div>
         <h1>{{ title }}</h1>
@@ -34,6 +34,10 @@
 <script>
 export default {
   props: {
+    show: {
+      type: Boolean,
+      default: true
+    },
     componentKey: {
       type: String,
       required: true
