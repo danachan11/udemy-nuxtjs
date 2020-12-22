@@ -15,7 +15,9 @@
         color="success"
         outlined
         v-model="value"
+        dense
       ></v-text-field>
+      <v-btn width="220" @click="onShowOnlyChanged" color="primary" class="black--text">{{showOnlyChangedButtonText}}</v-btn>
       <v-spacer></v-spacer>
       <v-btn class="mr-8" color="#C0C0C0">Save Settings</v-btn>
       <v-btn :color="$vuetify.theme.themes.light.primary" class="text--white"><h4 class="text--white">Save Settings &
@@ -32,7 +34,7 @@
             <v-container fluid>
               <div v-for="setting in settings">
                 <div v-if="setting.component === 'textField'">
-                  <ServerSettingsTextField :componentKey="setting.key" :value="setting.value" :title="setting.title"
+                  <ServerSettingsTextField :show="setting.show" :componentKey="setting.key" :value="setting.value" :title="setting.title"
                                            :description="setting.description"
                                            :label="setting.label" :type="setting.type"/>
                 </div>
@@ -61,20 +63,48 @@ export default {
 
   components: {ServerSettingsSliderTick, ServerSettingsTextField},
   methods: {
-    onSliderValueChanged(setting) {
-      console.log(`key: ${setting.key} value: ${setting.value}`)
-      const foundSetting = this.changedSettings.find(setting => setting.key === setting.key)
-      if(!foundSetting){
-        this.changedSettings.push(setting)
-        console.log(`changed not found`)
-      }else{
-        const index = this.changedSettings.indexOf(foundSetting)
-        this.changedSettings[index] = setting
+
+    onShowOnlyChanged(){
+      this.showOnlyChanged = !this.showOnlyChanged
+      if(!this.showOnlyChanged){
+        this.showOnlyChangedButtonText = "Show only changed"
+        this.settings = this.defaultSettings
+      }
+      else{
+        this.showOnlyChangedButtonText = "Show all"
+        console.log(`searching settings with value ${this.value}`)
+        const foundSettings = []
+        this.defaultSettings.forEach(setting => {
+          if (setting.isChanged === true) {
+            foundSettings.push(setting)
+          }
+        })
+        this.settings = foundSettings
+      }
+    },
+
+    onSliderValueChanged(changedSetting) {
+
+      let foundSetting = this.settings.find(setting => setting.key === changedSetting.key)
+      if (!foundSetting) {
+        console.log(`changed not found wtf returning`)
+        return
+      } else {
+        const settingIndex = this.settings.indexOf(foundSetting)
+        this.settings[settingIndex] = changedSetting
       }
 
+      foundSetting = this.defaultSettings.find(setting => setting.key === changedSetting.key)
+      if (!foundSetting) {
+        return;
+      } else {
+        const defaultSettingIndex = this.defaultSettings.indexOf(foundSetting)
+        this.defaultSettings[defaultSettingIndex] = changedSetting
+      }
 
-      this.changedSettings.forEach(setting => {
-        console.log(`changed setting ${setting.value}`)
+      this.defaultSettings.forEach(setting => {
+        if (setting.isChanged === true)
+          console.log(`is changed ${setting.title}`)
       })
 
     },
@@ -82,7 +112,8 @@ export default {
       this.searchSettings()
     }, 400),
     searchSettings() {
-      console.log(`searching settings with value ${this.value}`)
+      this.showOnlyChanged = false
+      this.showOnlyChangedButtonText = "Show only changed"
       const foundSettings = []
       this.defaultSettings.forEach(setting => {
         if (setting.title.toLowerCase().includes(this.value)) {
@@ -95,6 +126,8 @@ export default {
   },
   data() {
     return {
+      showOnlyChanged: false,
+      showOnlyChangedButtonText: "Show only changed",
       value: "",
       settings: [
         {

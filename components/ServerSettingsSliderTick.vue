@@ -77,7 +77,8 @@ export default {
         description: this.description,
         label: this.label,
         values: this.values,
-        value: changedValue
+        value: changedValue,
+        isChanged: true
       }
       this.$emit('sliderValueChanged', setting)
     },
