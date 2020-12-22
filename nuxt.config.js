@@ -28,7 +28,7 @@ export default {
     //     path.resolve(__dirname, "www_7dtdserver_com.ca-bundle")
     //   )
     // },
-    port: 443,
+    port: 2500,
     timing: false
   },
   loading: {
@@ -90,6 +90,12 @@ export default {
       target: "http://127.0.0.1:9000/api/users/get_config",
       pathRewrite: {
         "^/api/users/get_config": ""
+      }
+    },
+    "/api/users/set_config": {
+      target: "http://127.0.0.1:9000/api/users/set_config",
+      pathRewrite: {
+        "^/api/users/set_config": ""
       }
     }
   },

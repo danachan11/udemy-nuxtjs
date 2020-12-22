@@ -52,11 +52,19 @@ const createStore = () => {
             console.log(e);
           });
       },
-
+      saveSettings(vuexContext, params) {
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmFAZ21haWwuY29tIiwic3ViIjoiNWZkYjY4ODMxYzA4ZjRjMDFjYWJlZDE0IiwiaWF0IjoxNjA4NTQxODY4LCJleHAiOjE2MDg5MDE4Njh9.TOqF08ebPKcuY0rAApCAiwZPt2t-xjTOKMh9ybaxm-w"
+        return this.$axios
+          .$put("/api/users/set_config", params,
+            {headers: {Authorization: `Bearer ${token}`}})
+          .then(response => {
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      },
       login(vuexContext, params) {
-
         console.log(`store ${params.email} ${params.password}`)
-
         return this.$axios
           .$post("/api/login/", {"email": params.email, "password": params.password})
           .then(response => {
