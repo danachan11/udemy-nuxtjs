@@ -85,6 +85,12 @@ export default {
       pathRewrite: {
         "^/api/users/get_servers": ""
       }
+    },
+    "/api/users/get_config": {
+      target: "http://127.0.0.1:9000/api/users/get_config",
+      pathRewrite: {
+        "^/api/users/get_config": ""
+      }
     }
   },
 
