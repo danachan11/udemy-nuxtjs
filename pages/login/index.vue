@@ -59,6 +59,7 @@
 import MyLoading from "../../components/MyLoading";
 
 export default {
+  middleware: ['appbar-check'],
   components: {MyLoading},
   data() {
     return {

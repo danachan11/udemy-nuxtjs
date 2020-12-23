@@ -65,7 +65,7 @@ import debounce from 'lodash.debounce'
 
 export default {
   components: {ServerSettingsSliderTick, ServerSettingsTextField},
-  middleware: ["check-auth", "auth"],
+  middleware: ["check-auth", "auth", "appbar-check"],
   methods: {
     onSaveSettings() {
       const changedSettings = []

@@ -13,6 +13,9 @@
     <div v-for="(server, index) in servers" :key="index">
       <ServerCard @serverClicked="onServerClicked" :src="src" :server-info="server"></ServerCard>
     </div>
+    <div >
+      <NewServerCard></NewServerCard>
+    </div>
   </v-container>
 </template>
 
@@ -25,10 +28,11 @@ html {
 
 <script>
 import ServerCard from "../../components/ServerCard";
+import NewServerCard from "../../components/NewServerCard";
 
 export default {
-  components: {ServerCard},
-  middleware: ["check-auth", "auth"],
+  components: {NewServerCard, ServerCard},
+  middleware: ["check-auth", "auth", "appbar-check"],
   asyncData({context, app, store}) {
 
     const token = store.state.token
@@ -42,6 +46,9 @@ export default {
         return {
           servers: response.data
         }
+        // return {
+        //   servers: {...response.data, id: "01"}
+        // }
         // return {
         //   loadedPost: {...data, id: context.params.postId}
         // };

@@ -120,9 +120,9 @@ export default {
   //     "https://udemy-test-2d952-default-rtdb.firebaseio.com",
   //   credentials: false
   // },
-  router: {
-    middleware: "log"
-  }
+  // router: {
+  //   middleware: "log"
+  // }
   // serverMiddleware: [
   //   // Will register redirect-ssl npm package
   //   "redirect-ssl"

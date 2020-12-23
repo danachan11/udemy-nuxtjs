@@ -198,6 +198,7 @@ html {
 import BaseTextField from "../components/Base/BaseTextField";
 
 export default {
+  middleware: ['appbar-check'],
   components: {BaseTextField},
   data() {
     return {
@@ -224,10 +225,10 @@ export default {
           name: "America",
           value: "America1"
         },
-        {
-          name: "Europe",
-          value: "Europe1"
-        }
+        // {
+        //   name: "Europe",
+        //   value: "Europe1"
+        // }
       ],
       password: "",
       email: "",
