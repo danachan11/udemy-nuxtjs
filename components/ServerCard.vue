@@ -3,13 +3,13 @@
     <template v-slot:activator="{ on, attrs }">
       <v-card
         class="mx-auto mb-8"
-        color="#49C144  "
         width="1400px"
         hover
         v-bind="attrs"
         v-on="on"
         @click="serverClicked"
         :ripple="false"
+        v-show="isLoaded"
       >
         <v-img
           :src="src"
@@ -101,6 +101,10 @@
 <script>
 export default {
   props: {
+    isLoaded: {
+      type: Boolean,
+      default: false
+    },
     onClick: {
       type: Object,
       required: false

@@ -11,7 +11,7 @@
       </v-list-item>
     </v-card>
     <div v-for="(server, index) in servers" :key="index">
-      <ServerCard @serverClicked="onServerClicked" :src="src" :server-info="server"></ServerCard>
+      <ServerCard @serverClicked="onServerClicked" :src="src" :server-info="server" :is-loaded="isLoaded"></ServerCard>
     </div>
     <div >
       <NewServerCard></NewServerCard>
@@ -59,6 +59,7 @@ export default {
   },
   data() {
     return {
+      isLoaded: false,
       src: "https://steamcdn-a.akamaihd.net/steam/apps/251570/ss_66ab2c612cb28b4b61974bcb3380a69274c4c127.1920x1080.jpg?t=1599069217",
       // servers2: [
       //   [
@@ -118,6 +119,9 @@ export default {
     onServerClicked(server) {
       this.$router.push(`/servers/${server._id}`)
     }
+  },
+  mounted() {
+    this.isLoaded = true
   }
 }
 </script>
