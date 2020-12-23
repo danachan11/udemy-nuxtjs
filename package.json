@@ -21,6 +21,7 @@
     "lodash.debounce": "^4.0.8",
     "nuxt": "^2.14.6",
     "redirect-ssl": "^2.0.0",
+    "vue-loading-overlay": "^3.4.2",
     "vuetify": "^2.3.21"
   },
   "devDependencies": {

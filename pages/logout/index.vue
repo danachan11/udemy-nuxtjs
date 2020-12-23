@@ -1,16 +1,24 @@
 <template>
-  <div>
-    <h1>User logging out</h1>
-  </div>
+    <MyLoading :is-loading="isLoading"/>
 </template>
 
+
 <script>
+import MyLoading from "../../components/MyLoading";
 export default {
-  // mounted() {
-  //   this.$store.dispatch("signout");
-  //   this.$router.push("/auth");
-  // }
-};
+  components: {
+    MyLoading,
+  },
+  data() {
+    return {
+      isLoading: true,
+    }
+  },
+  mounted() {
+    this.$store.dispatch("signout");
+    this.$router.push("/login");
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>
