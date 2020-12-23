@@ -28,6 +28,7 @@ import ServerCard from "../../components/ServerCard";
 
 export default {
   components: {ServerCard},
+  middleware: ["check-auth", "auth"],
   asyncData({context, app, store}) {
 
     // const token = store.state.token
@@ -43,8 +44,6 @@ export default {
     return app.$axios
       .$get("/api/users/get_servers", config)
       .then(response => {
-        console.log(`my message ${response.message}`)
-        console.log(`my data ${response.data}`)
         return {
           servers: response.data
         }

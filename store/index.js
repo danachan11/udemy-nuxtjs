@@ -68,6 +68,7 @@ const createStore = () => {
         return this.$axios
           .$post("/api/login/", {"email": params.email, "password": params.password})
           .then(response => {
+            console.log(`got token back ${response.access_token}`)
             const token = response.access_token
             vuexContext.commit("setToken", token);
             localStorage.setItem("token", token);
@@ -123,34 +124,45 @@ const createStore = () => {
       //     });
       // },
       initAuth(vuexContext, req) {
-        var token = "";
-        var expirationDate = "";
+        let token = "";
+        let expirationDate = "";
+        console.log(`fuuuuuuuuuucking ssr`)
         if (req) {
+          console.log(`fucking srr man `)
           if (!req.headers.cookie) {
+            console.log(`fucking sssssssssssssr no header cookie`)
             return;
           }
           const jwtCookie = req.headers.cookie
             .split(";")
             .find(c => c.trim().startsWith("jwt="));
           if (!jwtCookie) {
+            console.log(`jwt cookie not found reutrn`)
             return;
           }
+          console.log(`jwt token no split ${jwtCookie.split("=")[1]}`)
           token = jwtCookie.split("=")[1];
-          const expirationDateCookie = req.headers.cookie
-            .split(";")
-            .find(c => c.trim().startsWith("tokenExpiration="));
-          if (!expirationDateCookie) {
-            return;
-          }
-          expirationDate = expirationDateCookie.split("=")[1];
-        } else {
+          console.log(`jwt cookie found ${token}`)
+          // const expirationDateCookie = req.headers.cookie
+          //   .split(";")
+          //   .find(c => c.trim().startsWith("tokenExpiration="));
+          // if (!expirationDateCookie) {
+          //   return;
+          // }
+          // expirationDate = expirationDateCookie.split("=")[1];
+        }
+        else {
           token = localStorage.getItem("token");
           expirationDate = localStorage.getItem("tokenExpiration");
         }
-        if (new Date().getTime() > +expirationDate || token === "") {
-          vuexContext.dispatch("signout");
-          return;
-        }
+
+        // if (new Date().getTime() > +expirationDate || token === "") {
+        //   vuexContext.dispatch("signout");
+        //   return;
+        // }
+
+        console.log(`got token at init auth ${token}`)
+
         vuexContext.commit("setToken", token);
       },
       signout(vuexContext) {

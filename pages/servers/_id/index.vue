@@ -64,8 +64,8 @@ import ServerSettingsSliderTick from "../../../components/ServerSettingsSliderTi
 import debounce from 'lodash.debounce'
 
 export default {
-
   components: {ServerSettingsSliderTick, ServerSettingsTextField},
+  middleware: ["check-auth", "auth"],
   methods: {
     onSaveSettings() {
       const changedSettings = []

@@ -3,7 +3,7 @@
     <v-app-bar
       id="home-app-bar"
       app
-      color="#090909"
+      color="primary"
       elevation="1"
       height="60"
     >
@@ -15,33 +15,26 @@
         width="100%"
       />
 
-      <v-img
-        :src="require('@/assets/zero-logo-light.svg')"
-        contain
-        max-width="128"
-        width="100%"
-      />
-
       <v-spacer/>
 
       <div>
         <v-tabs
           class="hidden-sm-and-down"
           optional
-          background-color="#090909"
+          background-color="primary"
         >
           <v-tab
-            v-for="(item, i) in items"
-            :key="i"
+            v-for="(item) in items"
+            :key="item.name"
             :to="item.to"
             :exact="item.name === 'Home'"
             :ripple="false"
-            active-class="white--text"
-            class="font-weight-bold white--text"
+            active-class="black--text"
+            class="font-weight-bold black--text"
             min-width="96"
             text
           >
-            {{ item.name }}
+            {{ item.name }} {{ item.id }}
           </v-tab>
         </v-tabs>
       </div>
@@ -70,7 +63,7 @@ export default {
   data: () => ({
     drawer: null,
     items: [
-      {name: "Home", to: "/"},
+      {name: 'Home', to: "/"},
       {name: "Login", to: "/login"},
     ],
   }),

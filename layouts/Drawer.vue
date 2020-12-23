@@ -4,8 +4,8 @@
     color="transparent"
     fixed
     height="auto"
-    overlay-color="secondary"
-    overlay-opacity=".8"
+    overlay-color="primary"
+    overlay-opacity=".2"
     temporary
     v-bind="$attrs"
     v-on="$listeners"
@@ -15,14 +15,14 @@
       shaped
     >
       <v-list-item
-        v-for="name in items"
-        :key="name"
-        :to="{ name }"
-        :exact="name === 'Home'"
+        v-for="item in items"
+        :key="item.name"
+        :to="item.to"
+        :exact="item.name === 'Home'"
         color="primary"
       >
         <v-list-item-content>
-          <v-list-item-title v-text="name" />
+          <v-list-item-title v-text="item.name" />
         </v-list-item-content>
       </v-list-item>
     </v-list>

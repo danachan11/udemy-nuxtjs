@@ -55,7 +55,7 @@
                   Config
                 </v-btn>
               </td>
-              <td>{{ item.name }}</td>
+              <td>{{ item.server_name }}</td>
               <td>
                 <v-btn
                   depressed
