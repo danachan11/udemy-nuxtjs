@@ -9,7 +9,7 @@
     <v-col cols="12" sm="5">
       <v-slider
         :tick-labels="values"
-        :value="value"
+        :value="valueN"
         min="0"
         :max="values.length - 1"
         color="success"
@@ -59,8 +59,12 @@ export default {
       required: true
     },
     value: {
-      type: Number,
+      type: String,
       default: 0
+    },
+    isTrueFalseValue: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -70,10 +74,27 @@ export default {
         'mdi-leaf',
         'mdi-fire'
       ],
+      valueN: ""
     }
   },
   methods: {
     onValueChange(changedValue) {
+
+      let newChangedValue = changedValue
+      console.log(`my changed value ${changedValue}`)
+      console.log(`I am is true false ${this.isTrueFalseValue}`)
+      if(this.isTrueFalseValue){
+        if(newChangedValue === 1){
+          newChangedValue = "true"
+        }
+        else{
+          newChangedValue = "false"
+        }
+      }else{
+        newChangedValue = changedValue.toString()
+      }
+      console.log(`my newwwwwwwwwwwww changed value ${newChangedValue}`)
+
       const setting = {
         component: "sliderTick",
         key: this.componentKey,
@@ -81,8 +102,9 @@ export default {
         description: this.description,
         label: this.label,
         values: this.values,
-        value: changedValue,
-        isChanged: true
+        value: newChangedValue,
+        isChanged: true,
+        isTrueFalse: this.isTrueFalseValue
       }
       this.$emit('sliderValueChanged', setting)
     },
@@ -90,5 +112,16 @@ export default {
       return this.icons[val]
     },
   },
+  mounted() {
+    if(this.isTrueFalseValue){
+      console.log(`i am true false ${this.title}`)
+      if(this.value === "true")
+        this.valueN = "1"
+      else
+        this.valueN = "0"
+    }else{
+      this.valueN = this.value
+    }
+  }
 }
 </script>

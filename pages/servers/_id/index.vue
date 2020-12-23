@@ -43,10 +43,10 @@
                 </div>
                 <div v-else>
                   <ServerSettingsSliderTick @sliderValueChanged="onSliderValueChanged" :show="setting.show"
-                                            :componentKey="setting.key"
-                                            :value="setting.value" :title="setting.title"
-                                            :description="setting.description"
-                                            :values="setting.values"/>
+                                            :componentKey="setting.key" :title="setting.title"
+                                            :description="setting.description" :label="setting.label"
+                                            :values="setting.values" :value="setting.value"
+                                            :is-true-false-value="setting.isTrueFalse"/>
                 </div>
               </div>
             </v-container>
@@ -67,12 +67,13 @@ export default {
 
   components: {ServerSettingsSliderTick, ServerSettingsTextField},
   methods: {
-    onSaveSettings(){
+    onSaveSettings() {
       const changedSettings = []
       this.settings.forEach(setting => {
-        if(setting.isChanged === true){
+        if (setting.isChanged === true) {
+          delete setting.isChanged
           changedSettings.push(setting)
-          console.log(`added setting ${setting}`)
+          console.log(`added setting ${setting.key} value: ${setting.value} , is true false: ${setting.isTrueFalse}`)
         }
       })
       const params = {"changedSettings": changedSettings, "serverId": this.$route.params.id}
