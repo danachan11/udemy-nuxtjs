@@ -28,7 +28,8 @@ export default {
     //     path.resolve(__dirname, "www_7dtdserver_com.ca-bundle")
     //   )
     // },
-    port: 2500,
+    port: process.env.PORT,
+    host: process.env.HOST,
     timing: false
   },
   loading: {
@@ -81,19 +82,19 @@ export default {
       }
     },
     "/api/users/get_servers": {
-      target: "http://127.0.0.1:9000/api/users/get_servers",
+      target: "http://207.180.254.151:9000/api/users/get_servers",
       pathRewrite: {
         "^/api/users/get_servers": ""
       }
     },
     "/api/users/get_config": {
-      target: "http://127.0.0.1:9000/api/users/get_config",
+      target: "http://207.180.254.151:9000/api/users/get_config",
       pathRewrite: {
         "^/api/users/get_config": ""
       }
     },
     "/api/users/set_config": {
-      target: "http://127.0.0.1:9000/api/users/set_config",
+      target: "http://207.180.254.151:9000/api/users/set_config",
       pathRewrite: {
         "^/api/users/set_config": ""
       }

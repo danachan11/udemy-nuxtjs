@@ -81,7 +81,7 @@ export default {
     validateForm() {
       return this.$refs.loginForm.validate()
     },
-    signin() {
+    async signin() {
       this.isLoading = true
       const bo = this.validateForm()
       if (!bo) {
@@ -92,11 +92,12 @@ export default {
       console.log(`form is validated`)
       console.log(`email: ${this.email} password: ${this.password}`)
 
-      this.$store.dispatch('login', {email: this.email, password: this.password})
+      await this.$store.dispatch('login', {email: this.email, password: this.password})
         .then(() => {
+          this.isLoading = false
           this.$router.push('/servers')
         }).catch(e => {
-          console.log(e)
+        this.isLoading = false
         })
     }
   },

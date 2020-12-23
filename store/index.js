@@ -88,7 +88,6 @@ const createStore = () => {
           });
       },
       login(vuexContext, params) {
-        console.log(`store ${params.email} ${params.password}`)
         return this.$axios
           .$post("/api/login/", {"email": params.email, "password": params.password})
           .then(response => {
@@ -97,9 +96,10 @@ const createStore = () => {
             vuexContext.commit("setToken", token);
             localStorage.setItem("token", token);
             Cookie.set("jwt", token);
+            return "success"
           })
           .catch(e => {
-            console.log(e);
+            throw e
           });
       },
       nuxtServerInit(vuexContext, context) {
