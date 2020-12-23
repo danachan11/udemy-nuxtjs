@@ -6,11 +6,10 @@
 
 <script>
 export default {
-  layout: "non-header",
-  mounted() {
-    this.$store.dispatch("signout");
-    this.$router.push("/auth");
-  }
+  // mounted() {
+  //   this.$store.dispatch("signout");
+  //   this.$router.push("/auth");
+  // }
 };
 </script>
 

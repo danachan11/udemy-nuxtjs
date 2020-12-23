@@ -5,7 +5,16 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       loadedPosts: [],
-      token: ""
+      token: "",
+      appbarItems: [],
+      authorizedAppbarItems: [
+        {name: "Servers", to: "/servers"},
+        {name: "Logout", to: "/logout"}
+      ],
+      unauthorizedAppbarItems: [
+        {name: 'Home', to: "/"},
+        {name: "Login", to: "/login"}
+      ]
     },
     mutations: {
       // setPosts(state, posts) {
@@ -20,6 +29,12 @@ const createStore = () => {
       //   );
       //   state.loadedPosts[postIndex] = edittedPost;
       // },
+      setAuthorizedAppbar(state){
+        state.appbarItems = state.authorizedAppbarItems
+      },
+      setUnauthorizedAppbar(state){
+        state.appbarItems = state.unauthorizedAppbarItems
+      },
       setToken(state, token) {
         state.token = token;
       },
@@ -28,6 +43,14 @@ const createStore = () => {
       }
     },
     actions: {
+      setAppbarItems(vuexContext){
+        if(vuexContext.getters.isAuthenticated){
+          vuexContext.commit('setAuthorizedAppbar')
+        }
+        else{
+          vuexContext.commit('setUnauthorizedAppbar')
+        }
+      },
       setupServer() {
         return this.$axios.$post("/setup_server/", {"id": "1234", "token": "token1234"});
       },
@@ -53,7 +76,7 @@ const createStore = () => {
           });
       },
       saveSettings(vuexContext, params) {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmFAZ21haWwuY29tIiwic3ViIjoiNWZkYjY4ODMxYzA4ZjRjMDFjYWJlZDE0IiwiaWF0IjoxNjA4NTQxODY4LCJleHAiOjE2MDg5MDE4Njh9.TOqF08ebPKcuY0rAApCAiwZPt2t-xjTOKMh9ybaxm-w"
+        const token = vuexContext.state.token
         return this.$axios
           .$put("/api/users/set_config", params,
             {headers: {Authorization: `Bearer ${token}`}})
@@ -126,23 +149,17 @@ const createStore = () => {
       initAuth(vuexContext, req) {
         let token = "";
         let expirationDate = "";
-        console.log(`fuuuuuuuuuucking ssr`)
         if (req) {
-          console.log(`fucking srr man `)
           if (!req.headers.cookie) {
-            console.log(`fucking sssssssssssssr no header cookie`)
             return;
           }
           const jwtCookie = req.headers.cookie
             .split(";")
             .find(c => c.trim().startsWith("jwt="));
           if (!jwtCookie) {
-            console.log(`jwt cookie not found reutrn`)
             return;
           }
-          console.log(`jwt token no split ${jwtCookie.split("=")[1]}`)
           token = jwtCookie.split("=")[1];
-          console.log(`jwt cookie found ${token}`)
           // const expirationDateCookie = req.headers.cookie
           //   .split(";")
           //   .find(c => c.trim().startsWith("tokenExpiration="));
@@ -150,8 +167,7 @@ const createStore = () => {
           //   return;
           // }
           // expirationDate = expirationDateCookie.split("=")[1];
-        }
-        else {
+        } else {
           token = localStorage.getItem("token");
           expirationDate = localStorage.getItem("tokenExpiration");
         }
@@ -160,9 +176,6 @@ const createStore = () => {
         //   vuexContext.dispatch("signout");
         //   return;
         // }
-
-        console.log(`got token at init auth ${token}`)
-
         vuexContext.commit("setToken", token);
       },
       signout(vuexContext) {

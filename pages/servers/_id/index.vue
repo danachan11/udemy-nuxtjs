@@ -132,9 +132,9 @@ export default {
       searchValue: "",
     }
   },
-  asyncData({app, params}) {
+  asyncData({app, params, store}) {
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmFAZ21haWwuY29tIiwic3ViIjoiNWZkYjY4ODMxYzA4ZjRjMDFjYWJlZDE0IiwiaWF0IjoxNjA4NTQxODY4LCJleHAiOjE2MDg5MDE4Njh9.TOqF08ebPKcuY0rAApCAiwZPt2t-xjTOKMh9ybaxm-w"
+    const token = store.state.token
 
     return app.$axios
       .$get("/api/users/get_config", { params: {"serverId": params.id}, headers: {Authorization: `Bearer ${token}`}})

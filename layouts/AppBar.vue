@@ -59,13 +59,13 @@ export default {
   components: {
     HomeDrawer: () => import('./Drawer'),
   },
-
+  computed: {
+    items() {
+      return this.$store.state.appbarItems
+    }
+  },
   data: () => ({
-    drawer: null,
-    items: [
-      {name: 'Home', to: "/"},
-      {name: "Login", to: "/login"},
-    ],
+    drawer: null
   }),
 }
 </script>

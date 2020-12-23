@@ -31,16 +31,11 @@ export default {
   middleware: ["check-auth", "auth"],
   asyncData({context, app, store}) {
 
-    // const token = store.state.token
-
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmFAZ21haWwuY29tIiwic3ViIjoiNWZkYjY4ODMxYzA4ZjRjMDFjYWJlZDE0IiwiaWF0IjoxNjA4NTQxODY4LCJleHAiOjE2MDg5MDE4Njh9.TOqF08ebPKcuY0rAApCAiwZPt2t-xjTOKMh9ybaxm-w"
+    const token = store.state.token
 
     const config = {
       headers: {Authorization: `Bearer ${token}`}
     };
-
-    console.log(`trying getting servers, my token ${token}`)
-
     return app.$axios
       .$get("/api/users/get_servers", config)
       .then(response => {
