@@ -1,6 +1,5 @@
 import Vuex from "vuex";
 import Cookie from "js-cookie";
-import $config from "firebase-tools/lib/deploymentTool";
 
 const createStore = () => {
   return new Vuex.Store({
@@ -171,6 +170,11 @@ const createStore = () => {
         } else {
           token = localStorage.getItem("token");
           expirationDate = localStorage.getItem("tokenExpiration");
+        }
+
+        if (token === "") {
+          vuexContext.dispatch("signout");
+          return;
         }
 
         // if (new Date().getTime() > +expirationDate || token === "") {

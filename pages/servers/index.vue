@@ -46,12 +46,6 @@ export default {
         return {
           servers: response.data
         }
-        // return {
-        //   servers: {...response.data, id: "01"}
-        // }
-        // return {
-        //   loadedPost: {...data, id: context.params.postId}
-        // };
       })
       .catch(e => {
 
