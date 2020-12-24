@@ -174,7 +174,7 @@ const createStore = () => {
           expirationDate = localStorage.getItem("tokenExpiration");
         }
 
-        if (token === "") {
+        if (token === "" || !token) {
           vuexContext.dispatch("signout");
           return;
         }
