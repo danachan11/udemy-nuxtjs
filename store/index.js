@@ -151,12 +151,14 @@ const createStore = () => {
         let expirationDate = "";
         if (req) {
           if (!req.headers.cookie) {
+            vuexContext.dispatch("signout");
             return;
           }
           const jwtCookie = req.headers.cookie
             .split(";")
             .find(c => c.trim().startsWith("jwt="));
           if (!jwtCookie) {
+            vuexContext.dispatch("signout");
             return;
           }
           token = jwtCookie.split("=")[1];
