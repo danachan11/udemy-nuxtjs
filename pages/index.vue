@@ -198,7 +198,7 @@ html {
 import BaseTextField from "../components/Base/BaseTextField";
 
 export default {
-  middleware: ["check-auth", "appbar-check"],
+  middleware: ["appbar-check"],
   components: {BaseTextField},
   data() {
     return {
