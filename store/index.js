@@ -190,6 +190,7 @@ const createStore = () => {
           localStorage.removeItem("tokenExpiration");
         }
         vuexContext.commit("clearToken");
+        vuexContext.getters.isAuthenticated = false
       }
     },
     getters: {
