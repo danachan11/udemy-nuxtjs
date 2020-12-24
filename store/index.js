@@ -80,7 +80,7 @@ const createStore = () => {
       saveSettings(vuexContext, params) {
         const token = vuexContext.state.token
         return this.$axios
-          .$put("/api/users/set_config", params,
+          .$put(this.$axios.defaults.baseURL + "/api/users/set_config", params,
             {headers: {Authorization: `Bearer ${token}`}})
           .then(response => {
           })
@@ -89,8 +89,11 @@ const createStore = () => {
           });
       },
       login(vuexContext, params) {
+
+        console.log(`my fucking axios url ${this.$axios.defaults.baseURL}  https ? ${this.$axios.defaults}`)
+
         return this.$axios
-          .$post("https://7dtdserver.com/api/login/", {"email": params.email, "password": params.password})
+          .$post(this.$axios.defaults.baseURL + "/api/login/", {"email": params.email, "password": params.password})
           .then(response => {
             console.log(`got token back ${response.access_token}`)
             const token = response.access_token

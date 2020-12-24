@@ -41,7 +41,7 @@ export default {
       headers: {Authorization: `Bearer ${token}`}
     };
     return app.$axios
-      .$get("/api/users/get_servers", config)
+      .$get(app.$axios.defaults.baseURL + "/api/users/get_servers", config)
       .then(response => {
         return {
           servers: response.data

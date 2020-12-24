@@ -137,7 +137,7 @@ export default {
     const token = store.state.token
 
     return app.$axios
-      .$get("/api/users/get_config", { params: {"serverId": params.id}, headers: {Authorization: `Bearer ${token}`}})
+      .$get(app.$axios.defaults.baseURL + "/api/users/get_config", { params: {"serverId": params.id}, headers: {Authorization: `Bearer ${token}`}})
       .then(response => {
         console.log(`my response ${response}`)
         return {

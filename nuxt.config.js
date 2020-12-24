@@ -103,12 +103,6 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
-  publicRuntimeConfig: {
-    baseURL: 'https://nuxtjs.org'
-  },
-  privateRuntimeConfig: {
-    apiSecret: process.env.API_SECRET
-  },
   // env: {
   //   baseUrl:
   //     process.env.BASE_URL ||
@@ -120,12 +114,13 @@ export default {
     name: "fade",
     mode: "out-in"
   },
-  // axios: {
-  //   baseURL:
-  //     process.env.BASE_URL ||
-  //     "https://udemy-test-2d952-default-rtdb.firebaseio.com",
-  //   credentials: false
-  // },
+  axios: {
+    baseURL:
+      process.env.BASE_URL || "http://127.0.0.1",
+    credentials: false,
+    https: process.env.HTTPS || false
+
+  },
   // router: {
   //   middleware: "log"
   // }
