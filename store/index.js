@@ -8,7 +8,7 @@ const createStore = () => {
       token: "",
       appbarItems: [],
       authorizedAppbarItems: [
-        {name: 'Home', to: "/"},
+        {name: 'Home2', to: "/"},
         {name: "Servers", to: "/servers"},
         {name: "Logout", to: "/logout"}
       ],
