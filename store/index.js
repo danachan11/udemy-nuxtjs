@@ -179,7 +179,7 @@ const createStore = () => {
           return;
         }
 
-        // if (new Date().getTime() > +expirationDate || token === "") {
+          // if (new Date().getTime() > +expirationDate || token === "") {
         //   vuexContext.dispatch("signout");
         //   return;
         // }
