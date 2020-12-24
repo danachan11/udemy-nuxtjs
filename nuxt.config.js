@@ -56,50 +56,50 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
 
-  proxy: {
-    "/start_server": {
-      target: "https://7dtdserver.com/api/copy",
-      pathRewrite: {
-        "^/start_server": ""
-      }
-    },
-    "/setup_server": {
-      target: "https://7dtdserver.com/api/setup_server",
-      pathRewrite: {
-        "^/setup_server": ""
-      }
-    },
-    "/signup": {
-      target: "https://7dtdserver.com/api/signup",
-      pathRewrite: {
-        "^/signup": ""
-      }
-    },
-    "/api/login": {
-      target: "https://7dtdserver.com/api/login",
-      pathRewrite: {
-        "^/api/login": ""
-      }
-    },
-    "/api/users/get_servers": {
-      target: "https://7dtdserver.com/api/users/get_servers",
-      pathRewrite: {
-        "^/api/users/get_servers": ""
-      }
-    },
-    "/api/users/get_config": {
-      target: "https://7dtdserver.com/api/users/get_config",
-      pathRewrite: {
-        "^/api/users/get_config": ""
-      }
-    },
-    "/api/users/set_config": {
-      target: "https://7dtdserver.com/api/users/set_config",
-      pathRewrite: {
-        "^/api/users/set_config": ""
-      }
-    }
-  },
+  // proxy: {
+  //   "/start_server": {
+  //     target: "https://7dtdserver.com/api/copy",
+  //     pathRewrite: {
+  //       "^/start_server": ""
+  //     }
+  //   },
+  //   "/setup_server": {
+  //     target: "https://7dtdserver.com/api/setup_server",
+  //     pathRewrite: {
+  //       "^/setup_server": ""
+  //     }
+  //   },
+  //   "/signup": {
+  //     target: "https://7dtdserver.com/api/signup",
+  //     pathRewrite: {
+  //       "^/signup": ""
+  //     }
+  //   },
+  //   "/api/login": {
+  //     target: "https://7dtdserver.com/api/login",
+  //     pathRewrite: {
+  //       "^/api/login": ""
+  //     }
+  //   },
+  //   "/api/users/get_servers": {
+  //     target: "https://7dtdserver.com/api/users/get_servers",
+  //     pathRewrite: {
+  //       "^/api/users/get_servers": ""
+  //     }
+  //   },
+  //   "/api/users/get_config": {
+  //     target: "https://7dtdserver.com/api/users/get_config",
+  //     pathRewrite: {
+  //       "^/api/users/get_config": ""
+  //     }
+  //   },
+  //   "/api/users/set_config": {
+  //     target: "https://7dtdserver.com/api/users/set_config",
+  //     pathRewrite: {
+  //       "^/api/users/set_config": ""
+  //     }
+  //   }
+  // },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
