@@ -58,43 +58,43 @@ export default {
 
   proxy: {
     "/start_server": {
-      target: "http://207.180.254.151:9000/copy",
+      target: "https://7dtdserver.com/api/copy",
       pathRewrite: {
         "^/start_server": ""
       }
     },
     "/setup_server": {
-      target: "http://207.180.254.151:9000/setup_server",
+      target: "https://7dtdserver.com/api/setup_server",
       pathRewrite: {
         "^/setup_server": ""
       }
     },
     "/signup": {
-      target: "http://207.180.254.151:9000/signup",
+      target: "https://7dtdserver.com/api/signup",
       pathRewrite: {
         "^/signup": ""
       }
     },
     "/api/login": {
-      target: "http://207.180.254.151:9000/api/login",
+      target: "https://7dtdserver.com/api/login",
       pathRewrite: {
         "^/api/login": ""
       }
     },
     "/api/users/get_servers": {
-      target: "http://207.180.254.151:9000/api/users/get_servers",
+      target: "https://7dtdserver.com/api/users/get_servers",
       pathRewrite: {
         "^/api/users/get_servers": ""
       }
     },
     "/api/users/get_config": {
-      target: "http://207.180.254.151:9000/api/users/get_config",
+      target: "https://7dtdserver.com/api/users/get_config",
       pathRewrite: {
         "^/api/users/get_config": ""
       }
     },
     "/api/users/set_config": {
-      target: "http://207.180.254.151:9000/api/users/set_config",
+      target: "https://7dtdserver.com/api/users/set_config",
       pathRewrite: {
         "^/api/users/set_config": ""
       }
