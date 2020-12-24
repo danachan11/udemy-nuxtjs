@@ -28,6 +28,7 @@ export default {
     //     path.resolve(__dirname, "www_7dtdserver_com.ca-bundle")
     //   )
     // },
+
     port: process.env.PORT,
     host: process.env.HOST,
     timing: false
