@@ -103,13 +103,18 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
-
-  env: {
-    baseUrl:
-      process.env.BASE_URL ||
-      "https://udemy-test-2d952-default-rtdb.firebaseio.com",
-    firebaseAPI: "AIzaSyByBdECKuk3COE0dxeNZ1ljdyusY925yPA"
+  publicRuntimeConfig: {
+    baseURL: 'https://nuxtjs.org'
   },
+  privateRuntimeConfig: {
+    apiSecret: process.env.API_SECRET
+  },
+  // env: {
+  //   baseUrl:
+  //     process.env.BASE_URL ||
+  //     "https://udemy-test-2d952-default-rtdb.firebaseio.com",
+  //   firebaseAPI: "AIzaSyByBdECKuk3COE0dxeNZ1ljdyusY925yPA"
+  // },
   generate: {},
   transition: {
     name: "fade",

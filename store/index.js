@@ -1,5 +1,6 @@
 import Vuex from "vuex";
 import Cookie from "js-cookie";
+import $config from "firebase-tools/lib/deploymentTool";
 
 const createStore = () => {
   return new Vuex.Store({
@@ -89,7 +90,7 @@ const createStore = () => {
       },
       login(vuexContext, params) {
         return this.$axios
-          .$post("https:/7dtdserver.com/api/login/", {"email": params.email, "password": params.password})
+          .$post("https://7dtdserver.com/api/login/", {"email": params.email, "password": params.password})
           .then(response => {
             console.log(`got token back ${response.access_token}`)
             const token = response.access_token
