@@ -14,7 +14,7 @@
       <ServerCard @serverClicked="onServerClicked" :src="src" :server-info="server" :is-loaded="isLoaded"></ServerCard>
     </div>
     <div >
-      <NewServerCard></NewServerCard>
+      <NewServerCard @newServerClicked="onNewServerClicked"></NewServerCard>
     </div>
   </v-container>
 </template>
@@ -112,6 +112,9 @@ export default {
   methods: {
     onServerClicked(server) {
       this.$router.push(`/servers/${server._id}`)
+    },
+    onNewServerClicked(){
+      this.$store.dispatch('newServer')
     }
   },
   mounted() {

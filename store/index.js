@@ -8,12 +8,12 @@ const createStore = () => {
       token: "",
       appbarItems: [],
       authorizedAppbarItems: [
-        {name: 'Home', to: "/"},
+        {name: 'Home22222222222', to: "/"},
         {name: "Servers", to: "/servers"},
         {name: "Logout", to: "/logout"}
       ],
       unauthorizedAppbarItems: [
-        {name: 'Home', to: "/"},
+        {name: 'Home333333333333', to: "/"},
         {name: "Login", to: "/login"}
       ]
     },
@@ -30,10 +30,10 @@ const createStore = () => {
       //   );
       //   state.loadedPosts[postIndex] = edittedPost;
       // },
-      setAuthorizedAppbar(state){
+      setAuthorizedAppbar(state) {
         state.appbarItems = state.authorizedAppbarItems
       },
-      setUnauthorizedAppbar(state){
+      setUnauthorizedAppbar(state) {
         state.appbarItems = state.unauthorizedAppbarItems
       },
       setToken(state, token) {
@@ -44,11 +44,10 @@ const createStore = () => {
       }
     },
     actions: {
-      setAppbarItems(vuexContext){
-        if(vuexContext.getters.isAuthenticated){
+      setAppbarItems(vuexContext) {
+        if (vuexContext.getters.isAuthenticated) {
           vuexContext.commit('setAuthorizedAppbar')
-        }
-        else{
+        } else {
           vuexContext.commit('setUnauthorizedAppbar')
         }
       },
@@ -82,6 +81,18 @@ const createStore = () => {
           .$put(this.$axios.defaults.baseURL + "/api/users/set_config", params,
             {headers: {Authorization: `Bearer ${token}`}})
           .then(response => {
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      },
+      newServer(vuexContext, params) {
+        const token = vuexContext.state.token
+        return this.$axios
+          .$post(this.$axios.defaults.baseURL + "/api/users/start_server", params,
+            {headers: {Authorization: `Bearer ${token}`}})
+          .then(response => {
+
           })
           .catch(e => {
             console.log(e);
@@ -179,7 +190,7 @@ const createStore = () => {
           return;
         }
 
-          // if (new Date().getTime() > +expirationDate || token === "") {
+        // if (new Date().getTime() > +expirationDate || token === "") {
         //   vuexContext.dispatch("signout");
         //   return;
         // }
