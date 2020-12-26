@@ -51,7 +51,7 @@
                   :color="$vuetify.theme.themes.light.primary"
                   align="center"
                   @click.stop="serverClicked"
-                  :disabled="!serverInfo.started"
+                  :disabled="!item.started"
                 >
                   Config
                 </v-btn>
@@ -83,7 +83,7 @@
               <td>
                 <v-btn
                   depressed
-                  color="#49C144"
+                  :color="item.status === 'online' ? '#49C144' : 'red'"
                 >
                   {{ item.status }}
                 </v-btn>

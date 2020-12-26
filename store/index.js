@@ -99,6 +99,7 @@ const createStore = () => {
           });
       },
       login(vuexContext, params) {
+        console.log(`fucking axios ${this.$axios.defaults.baseURL}`)
         return this.$axios
           .$post(this.$axios.defaults.baseURL + "/api/login/", {"email": params.email, "password": params.password})
           .then(response => {
