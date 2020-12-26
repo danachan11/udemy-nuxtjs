@@ -51,6 +51,7 @@
                   :color="$vuetify.theme.themes.light.primary"
                   align="center"
                   @click.stop="serverClicked"
+                  :disabled="!serverInfo.started"
                 >
                   Config
                 </v-btn>
@@ -94,7 +95,7 @@
         </v-simple-table>
       </v-card>
     </template>
-    <span>Press to config</span>
+    <span>{{ this.serverInfo[0].started === true ? "Press to config" : "Server is starting, please wait." }}</span>
   </v-tooltip>
 </template>
 
@@ -120,6 +121,8 @@ export default {
   },
   methods: {
     serverClicked() {
+      if (!this.serverInfo[0].started)
+        return
       this.$emit('serverClicked', this.serverInfo[0])
     },
     hello() {
