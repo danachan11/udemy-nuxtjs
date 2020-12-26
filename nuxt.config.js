@@ -51,7 +51,7 @@ export default {
   ],
   googleAnalytics: {
     // Options
-    id: "G-NCWH29RJRQ"
+    id: "UA-186125572-1"
   },
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
