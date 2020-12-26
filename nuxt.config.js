@@ -8,7 +8,7 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: "Get 7 Days to Die(7dtd) one day free trial now, just sign up no credit card info needed."
+        content: "Custom-built for 7 Days to Die hosting, fast and cheap dedicated server. Get 7dtd server one day free trial now, just sign up no credit card info needed."
       }
     ],
     link: [
@@ -21,13 +21,6 @@ export default {
     ]
   },
   server: {
-    // https: {
-    //   key: fs.readFileSync(path.resolve(__dirname, "servers.key")),
-    //   cert: fs.readFileSync(path.resolve(__dirname, "servers.crt")),
-    //   ca: fs.readFileSync(
-    //     path.resolve(__dirname, "www_7dtdserver_com.ca-bundle")
-    //   )
-    // },
     port: process.env.PORT,
     host: process.env.HOST,
     timing: false
@@ -43,8 +36,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    "~plugins/core-components.js", "~plugins/date-filter.js", '~plugins/vuetify.js',
-    { src: '~plugins/ga.js', mode: 'client' }
+    "~plugins/core-components.js", "~plugins/date-filter.js", '~plugins/vuetify.js'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
